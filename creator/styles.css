@@ -207,7 +207,7 @@ section:not(.hero) .line-inner{transition-delay:calc(var(--i,0)*90ms)}
   display:block;font-family:'Sora',sans-serif;font-weight:800;
   font-size:clamp(24px,3vw,34px);color:#fff;font-variant-numeric:tabular-nums;
 }
-.stat span{font-size:13px;color:rgba(238,243,251,.55);font-weight:600}
+.stat>span{font-size:13px;color:rgba(238,243,251,.55);font-weight:600}
 
 /* Portrait — edited duotone, gold ring, gradient seat, float */
 .hero-photo{display:flex;justify-content:center;position:relative;z-index:1}
