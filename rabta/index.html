@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Rabta — Social Media Work App</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Rabta — Social Media Work App">
-<meta property="og:description" content="Chats, design maker, offline AI assistant and work ideas — Shoaib Ahmed's social & work app, right in your browser.">
+<meta property="og:description" content="Verified chats, design maker, Sami AI assistant and work ideas — Shoaib Ahmed's social & work app, right in your browser.">
 <meta property="og:image" content="https://pyblitz.github.io/shoaib-websites/assets/og-rabta.png">
 <meta property="og:url" content="https://pyblitz.github.io/shoaib-websites/rabta/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://pyblitz.github.io/shoaib-websites/assets/og-rabta.png">
+
+<title>Rabta — Social Media Work App</title>
 <style>
 :root{
   --accent:#0bb07b; --accent2:#0a8a66; --accent-deep:#075e54; --accent-soft:#dcf8ec;
@@ -276,6 +277,72 @@ input,textarea,select{font-family:inherit;color:inherit}
 .call-actions .end b{background:var(--danger);width:66px;height:66px;font-size:27px}
 .toast{position:absolute;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);background:#111b21;color:#fff;padding:11px 20px;border-radius:22px;font-size:14px;opacity:0;pointer-events:none;transition:all .3s var(--ease);z-index:70;box-shadow:var(--shadow);white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%)}
+
+/* ================= v2 ADDITIONS ================= */
+/* ---------- Registration flow ---------- */
+#reg{position:absolute;inset:0;z-index:55;background:var(--surface);display:none;flex-direction:column;padding:34px 26px;overflow-y:auto}
+#reg.show{display:flex;animation:fadeUp .45s var(--ease)}
+.reg-step{display:none;flex-direction:column;flex:1}
+.reg-step.on{display:flex;animation:fadeUp .35s var(--ease)}
+#reg .logo-mark{background:linear-gradient(140deg,var(--accent),var(--accent-deep));color:#fff;box-shadow:none;width:74px;height:74px;font-size:42px;border-radius:22px}
+#reg h2{font-size:27px;margin:20px 0 6px}
+#reg p.sub{color:var(--ink2);font-size:15px;line-height:1.55}
+#reg .note{margin-top:16px;font-size:12.5px;color:var(--ink3);text-align:center;line-height:1.5}
+.field select{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:13px;font-size:16px;background:var(--surface2);outline:none;transition:border-color .2s, box-shadow .2s;appearance:none;-webkit-appearance:none}
+.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.phone-row{display:flex;gap:9px}
+.phone-row .dial{flex:none;width:92px;text-align:center;font-weight:700;background:var(--surface2);border:1.5px solid var(--line);border-radius:13px;padding:13px 6px;font-size:16px;color:var(--accent2)}
+.phone-row input{flex:1}
+.verified-note{display:flex;gap:10px;background:var(--accent-soft);border-radius:13px;padding:13px 15px;margin-top:22px;font-size:13.5px;line-height:1.5;color:var(--ink)}
+.verified-note b{color:var(--accent2)}
+.link-btn{margin-top:14px;font-size:14.5px;color:var(--accent2);font-weight:600;padding:8px}
+.otp-row{display:flex;gap:9px;justify-content:space-between;margin-top:8px}
+.otp-box{width:48px;height:58px;text-align:center;font-size:24px;font-weight:700;border:1.5px solid var(--line);border-radius:13px;background:var(--surface2);outline:none;transition:border-color .2s, box-shadow .2s;caret-color:var(--accent)}
+.otp-box:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.preview-code{margin-top:18px;border:1.5px dashed var(--gold);background:rgba(245,185,13,.12);border-radius:13px;padding:13px 15px;font-size:13.5px;line-height:1.55;text-align:center}
+.preview-code .code{font-size:23px;font-weight:800;letter-spacing:6px;color:var(--ink);display:block;margin-top:4px}
+.mode-pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;background:rgba(245,185,13,.16);color:#9a7400;border:1px solid var(--gold);padding:5px 11px;border-radius:20px}
+[data-theme="dark"] .mode-pill{color:var(--gold)}
+/* ---------- Chat list v2 ---------- */
+.pin-label{font-size:12px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.7px;padding:14px 18px 2px}
+.ai-badge{flex:none;font-size:10px;font-weight:800;letter-spacing:.5px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:3px 8px;border-radius:8px;text-transform:uppercase}
+.pv-badge{flex:none;font-size:10px;font-weight:800;letter-spacing:.5px;background:rgba(245,185,13,.18);color:#9a7400;border:1px solid var(--gold);padding:2px 7px;border-radius:8px;text-transform:uppercase}
+[data-theme="dark"] .pv-badge{color:var(--gold)}
+#fab{position:absolute;right:18px;bottom:18px;z-index:6;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:15px;font-weight:700;padding:14px 20px;border-radius:28px;box-shadow:0 8px 22px rgba(11,176,123,.45);transition:transform .15s var(--ease)}
+#fab:active{transform:scale(.94)}
+.chat-item.blocked{opacity:.55}
+/* ---------- Chat window v2 ---------- */
+.preview-chip{align-self:center;background:rgba(245,185,13,.16);border:1px solid var(--gold);color:var(--ink);font-size:12px;padding:7px 12px;border-radius:10px;margin:6px 0 10px;text-align:center;max-width:90%;line-height:1.5}
+#blockedbar{display:none;background:var(--surface);border-top:1px solid var(--line);padding:14px 16px;text-align:center;font-size:14px;color:var(--ink2);line-height:1.5}
+#blockedbar.show{display:block}
+#blockedbar button{color:var(--accent2);font-weight:700;font-size:14.5px}
+/* ---------- Bottom sheets ---------- */
+#sheetwrap{position:absolute;inset:0;z-index:65;background:rgba(5,12,16,.5);display:none;align-items:flex-end;justify-content:center}
+#sheetwrap.show{display:flex;animation:fadeUp .2s var(--ease)}
+#sheet{background:var(--surface);width:100%;border-radius:22px 22px 0 0;padding:10px 8px calc(14px + env(safe-area-inset-bottom));max-height:82%;overflow-y:auto;animation:sheetUp .3s var(--ease)}
+@keyframes sheetUp{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+#sheet .grab{width:42px;height:4.5px;border-radius:3px;background:var(--line);margin:4px auto 10px}
+.sheet-item{display:flex;align-items:center;gap:14px;width:100%;padding:14px 14px;font-size:15.5px;border-radius:12px;text-align:left;transition:background .15s}
+.sheet-item:active{background:var(--surface2)}
+.sheet-item .ic{font-size:19px;width:26px;text-align:center}
+.sheet-item.danger{color:var(--danger)}
+.sheet-title{font-size:17px;font-weight:700;padding:8px 14px 4px}
+.sheet-sub{font-size:13.5px;color:var(--ink2);padding:0 14px 8px;line-height:1.5}
+.sheet .field{margin:12px 14px 0}
+.sheet .btn-primary{margin:18px 14px 4px;width:calc(100% - 28px)}
+.radio-item{display:flex;gap:12px;align-items:center;padding:13px 14px;font-size:15px;cursor:pointer;border-radius:12px}
+.radio-item:active{background:var(--surface2)}
+.radio-item input{accent-color:var(--accent);width:19px;height:19px}
+.contact-hero{display:flex;flex-direction:column;align-items:center;padding:14px 16px 6px;text-align:center}
+.contact-hero .avatar{width:84px;height:84px;font-size:34px}
+.contact-hero h3{font-size:20px;margin-top:11px}
+.contact-hero p{color:var(--ink2);font-size:14px;margin-top:3px;line-height:1.5}
+.verified-badge{display:inline-flex;align-items:center;gap:5px;background:var(--accent-soft);color:var(--accent2);font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:16px;margin-top:8px}
+/* ---------- Profile v2 ---------- */
+.backend-card{margin:16px 16px 0;border:1.5px dashed var(--gold);background:rgba(245,185,13,.08);border-radius:14px;padding:14px 16px;font-size:13.5px;line-height:1.6;color:var(--ink2)}
+.backend-card b{color:var(--ink)}
+.info-line{display:flex;gap:10px;font-size:14.5px;padding:13px 16px;border-bottom:1px solid var(--line);align-items:center}
+.info-line .k{color:var(--ink3);width:86px;flex:none;font-size:13px;text-transform:uppercase;letter-spacing:.5px;font-weight:700}
 </style>
 </head>
 <body>
@@ -288,25 +355,60 @@ input,textarea,select{font-family:inherit;color:inherit}
     <div class="dots"><i></i><i></i><i></i></div>
   </div>
 
-  <!-- FIRST-RUN SETUP -->
-  <div id="setup">
-    <div class="logo-mark">R</div>
-    <h2>Rabta mein khush aamdeed!</h2>
-    <p class="sub">Apni profile bana lein — ye sirf is device par save hogi, koi account ya internet nahi chahiye.</p>
-    <div class="field">
-      <label>Apka naam</label>
-      <input id="setup-name" type="text" placeholder="e.g. Shoaib Ahmed" autocomplete="off">
+  <!-- REGISTRATION (Welcome → Details → OTP) -->
+  <div id="reg">
+    <!-- STEP 1: WELCOME -->
+    <div class="reg-step on" id="reg-step-1">
+      <div class="logo-mark">R</div>
+      <h2>Rabta mein khush aamdeed!</h2>
+      <p class="sub">Apna account banayein — <b>poora naam, country aur mobile number</b> ke sath. Number par <b>OTP code</b> se verification hogi, taake Rabta par sirf asal, verified log hon.</p>
+      <div class="verified-note"><span style="font-size:19px">🛡️</span><span><b>Verified users only.</b> Bina number verification ke account nahi banta — koi fake profile nahi.</span></div>
+      <div class="field"><label>Profile colour</label><div class="color-row" id="reg-colors"></div></div>
+      <button class="btn-primary" id="reg-start">Account Banayein →</button>
+      <p class="note" id="reg-mode-note"></p>
     </div>
-    <div class="field">
-      <label>About (status line)</label>
-      <input id="setup-about" type="text" placeholder="e.g. Graphic Designer | Orders open" autocomplete="off">
+    <!-- STEP 2: DETAILS -->
+    <div class="reg-step" id="reg-step-2">
+      <h2 style="margin-top:2px">Apni details likhein</h2>
+      <p class="sub">Yehi naam aur number aap ki Rabta pehchan hoga.</p>
+      <div class="field">
+        <label>Poora naam</label>
+        <input id="reg-name" type="text" placeholder="e.g. Shoaib Ahmed" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>Country</label>
+        <select id="reg-country"></select>
+      </div>
+      <div class="field">
+        <label>Mobile number</label>
+        <div class="phone-row">
+          <div class="dial" id="reg-dial">+92</div>
+          <input id="reg-phone" type="tel" inputmode="numeric" placeholder="3XX XXXXXXX" autocomplete="off">
+        </div>
+      </div>
+      <div class="field">
+        <label>About (status line, ikhtiyari)</label>
+        <input id="reg-about" type="text" placeholder="e.g. Graphic Designer | Orders open" autocomplete="off">
+      </div>
+      <button class="btn-primary" id="reg-send-otp">OTP Bhejein →</button>
+      <button class="link-btn" id="reg-back-1">← Wapas</button>
+      <p class="note">OTP bhejne se aap raazi hain ke ye number aap ka apna hai.</p>
     </div>
-    <div class="field">
-      <label>Profile colour</label>
-      <div class="color-row" id="setup-colors"></div>
+    <!-- STEP 3: OTP -->
+    <div class="reg-step" id="reg-step-3">
+      <h2 style="margin-top:2px">OTP Verification</h2>
+      <p class="sub" id="otp-sub">6-digit code bheja gaya hai.</p>
+      <div class="field">
+        <label>Code likhein</label>
+        <div class="otp-row" id="otp-row">
+          <input class="otp-box" type="tel" inputmode="numeric" maxlength="1"><input class="otp-box" type="tel" inputmode="numeric" maxlength="1"><input class="otp-box" type="tel" inputmode="numeric" maxlength="1"><input class="otp-box" type="tel" inputmode="numeric" maxlength="1"><input class="otp-box" type="tel" inputmode="numeric" maxlength="1"><input class="otp-box" type="tel" inputmode="numeric" maxlength="1">
+        </div>
+      </div>
+      <div class="preview-code" id="otp-preview" style="display:none"></div>
+      <button class="btn-primary" id="reg-verify">Verify Karein ✓</button>
+      <button class="link-btn" id="otp-resend">Code dobara bhejein</button>
+      <button class="link-btn" id="reg-back-2">← Number change karein</button>
     </div>
-    <button class="btn-primary" id="setup-go">Shuru Karein →</button>
-    <p class="note">Rabta 100% offline kaam karta hai. Chats ke contacts is device par simulated hain taake aap app ko test kar saken.</p>
   </div>
 
   <!-- MAIN -->
@@ -318,16 +420,12 @@ input,textarea,select{font-family:inherit;color:inherit}
     </div>
     <div id="screens">
       <!-- CHATS -->
-      <section class="screen active" id="scr-chats">
+      <section class="screen active" id="scr-chats" style="position:absolute">
         <div class="search-wrap">
           <div class="search-box"><span>🔍</span><input id="chat-search" type="text" placeholder="Chats search karein…"></div>
         </div>
-        <div class="seg">
-          <button id="seg-chats" class="on">💬 Chats</button>
-          <button id="seg-calls">📞 Calls</button>
-        </div>
         <div id="chatlist"></div>
-        <div id="calllist" style="display:none"></div>
+        <button id="fab">＋ Nayi Chat</button>
       </section>
 
       <!-- STATUS -->
@@ -341,8 +439,8 @@ input,textarea,select{font-family:inherit;color:inherit}
           <textarea id="status-text" placeholder="Apna status likhein… (e.g. New logo design ready! Orders open 🎨)"></textarea>
           <div class="row"><button class="chip-btn" id="status-cancel">Cancel</button><button class="chip-btn primary" id="status-post">Post Status</button></div>
         </div>
-        <div class="sec-title">Recent Updates</div>
-        <div id="statuslist"></div>
+        <div class="sec-title">Doston Ke Status</div>
+        <div class="empty-note">Abhi yahan kuch nahi hai.<br>Jab aap ke verified dost Rabta join karenge,<br>un ke status yahan nazar ayenge.</div>
       </section>
 
       <!-- DESIGN -->
@@ -380,25 +478,6 @@ input,textarea,select{font-family:inherit;color:inherit}
         </div>
       </section>
 
-      <!-- AI -->
-      <section class="screen" id="scr-ai">
-        <div class="ai-wrap">
-          <div class="ai-chips">
-            <button data-q="Design idea do">🎨 Design idea</button>
-            <button data-q="YouTube video idea do">🎬 Video idea</button>
-            <button data-q="Caption likh do">✍️ Caption</button>
-            <button data-q="Hashtags do">＃ Hashtags</button>
-            <button data-q="Business idea do">💼 Business idea</button>
-            <button data-q="Thumbnail tips do">🖼️ Thumbnail tips</button>
-          </div>
-          <div id="ai-list"></div>
-          <div class="ai-input">
-            <input id="ai-text" type="text" placeholder="Rabta AI se poochhein…">
-            <button class="send-btn" id="ai-send">➤</button>
-          </div>
-        </div>
-      </section>
-
       <!-- IDEAS -->
       <section class="screen" id="scr-ideas">
         <div class="cat-row" id="cat-row">
@@ -416,17 +495,23 @@ input,textarea,select{font-family:inherit;color:inherit}
         <div class="prof-head">
           <div class="avatar" id="prof-av"></div>
           <h2 id="prof-name"></h2>
+          <div id="prof-verified"></div>
           <p id="prof-about"></p>
+        </div>
+        <div class="set-list" style="margin-top:10px">
+          <div class="info-line"><span class="k">Number</span><span id="prof-phone">—</span></div>
+          <div class="info-line"><span class="k">Country</span><span id="prof-country">—</span></div>
         </div>
         <div class="set-list">
           <div class="set-item" id="set-edit"><span class="ic">✏️</span><span class="sp">Profile edit karein</span><span class="val">›</span></div>
           <div class="set-item" id="set-dark"><span class="ic">🌙</span><span class="sp">Dark mode</span><div class="switch" id="dark-sw"></div></div>
           <div class="set-item" id="set-saved"><span class="ic">❤️</span><span class="sp">Saved ideas</span><span class="val" id="saved-count">0</span></div>
-          <div class="set-item" id="set-reset"><span class="ic">🗑️</span><span class="sp" style="color:var(--danger)">Saara data reset karein</span></div>
+          <div class="set-item" id="set-reset"><span class="ic">🗑️</span><span class="sp" style="color:var(--danger)">Logout + data reset</span></div>
         </div>
+        <div class="backend-card" id="backend-card"></div>
         <div class="about-box">
-          <b>Rabta ke baare mein</b> — Ye Shoaib Ahmed ki apni social media work app hai: chats, status, poster design maker, offline AI assistant aur kaam ke ideas — sab aik jagah, bilkul free aur offline.<br><br>
-          ℹ️ <b>Note:</b> Is version mein chat contacts aur AI replies is device par chalne wale built-in engines se ate hain (simulation) — asal logon se chat ke liye server wala version chahiye hoga. Aap ka data sirf is phone mein rehta hai.
+          <b>Rabta ke baare mein</b> — Ye Shoaib Ahmed ki apni social media work app hai: verified chats, poster design maker, Sami AI assistant aur kaam ke ideas — sab aik jagah.<br><br>
+          ℹ️ <b>Note:</b> Is version mein account verification aur chats ka data is device par <b>Local Preview</b> mode mein hai — asal OTP SMS aur real chats ke liye Firebase backend connect hoga (guide tayyar hai). <b>Sami AI</b> aik on-device bot hai, koi asal insaan nahi.
         </div>
       </section>
     </div>
@@ -436,7 +521,6 @@ input,textarea,select{font-family:inherit;color:inherit}
       <button class="tab active" data-tab="chats"><span class="pill"></span><span class="tic">💬</span>Chats<span class="nbadge" id="chat-badge" style="display:none">0</span></button>
       <button class="tab" data-tab="status"><span class="pill"></span><span class="tic">⭕</span>Status</button>
       <button class="tab" data-tab="design"><span class="pill"></span><span class="tic">🎨</span>Design</button>
-      <button class="tab" data-tab="ai"><span class="pill"></span><span class="tic">🤖</span>AI</button>
       <button class="tab" data-tab="ideas"><span class="pill"></span><span class="tic">💡</span>Ideas</button>
       <button class="tab" data-tab="profile"><span class="pill"></span><span class="tic">👤</span>Profile</button>
     </nav>
@@ -447,15 +531,15 @@ input,textarea,select{font-family:inherit;color:inherit}
     <div class="cw-head">
       <button class="icon-btn" id="cw-back">←</button>
       <div class="avatar" id="cw-av"></div>
-      <div class="who"><div class="n" id="cw-name"></div><div class="s" id="cw-sub">online</div></div>
-      <button class="icon-btn" id="cw-vcall">📹</button>
-      <button class="icon-btn" id="cw-call">📞</button>
+      <div class="who" id="cw-who"><div class="n" id="cw-name"></div><div class="s" id="cw-sub">—</div></div>
+      <button class="icon-btn" id="cw-menu" title="Menu">⋮</button>
     </div>
     <div id="msglist"></div>
     <div class="typing" id="typing"><i></i><i></i><i></i></div>
     <div id="replybar"><div class="q" id="reply-q"></div><button class="icon-btn" id="reply-x" style="color:var(--ink2)">✕</button></div>
     <div id="emojibar"></div>
-    <div class="cw-input">
+    <div id="blockedbar"></div>
+    <div class="cw-input" id="cw-input">
       <div class="box">
         <button class="icon-btn" id="emoji-btn" style="color:var(--ink3)">😊</button>
         <textarea id="msg-input" rows="1" placeholder="Message likhein…"></textarea>
@@ -464,7 +548,7 @@ input,textarea,select{font-family:inherit;color:inherit}
     </div>
   </div>
 
-  <!-- STATUS VIEWER -->
+  <!-- STATUS VIEWER (sirf mera status) -->
   <div id="viewer">
     <div class="vtop">
       <div class="bar"><i id="v-bar-fill"></i></div>
@@ -475,21 +559,7 @@ input,textarea,select{font-family:inherit;color:inherit}
       </div>
     </div>
     <div class="vbody" id="v-body"></div>
-    <div class="vfoot">Rabta Status • simulated contact</div>
-  </div>
-
-  <!-- CALL SCREEN -->
-  <div id="callscreen">
-    <div class="avatar" id="call-av"></div>
-    <h2 id="call-name"></h2>
-    <div class="st" id="call-status">calling…</div>
-    <div class="call-actions">
-      <div class="ca" id="ca-mute"><b>🔇</b>Mute</div>
-      <div class="ca" id="ca-spk"><b>🔊</b>Speaker</div>
-      <div class="ca end" id="ca-end"><b>📞</b></div>
-      <div class="ca" id="ca-vid"><b>📹</b>Video</div>
-      <div class="ca" id="ca-msg"><b>💬</b>Message</div>
-    </div>
+    <div class="vfoot">Rabta Status • sirf aap ka apna status</div>
   </div>
 
   <!-- EDIT PROFILE -->
@@ -498,65 +568,28 @@ input,textarea,select{font-family:inherit;color:inherit}
     <p style="color:var(--ink2);font-size:14.5px">Naam aur about change karein — foran save ho jayega.</p>
     <div class="field"><label>Naam</label><input id="edit-name" type="text"></div>
     <div class="field"><label>About</label><input id="edit-about" type="text"></div>
+    <div class="field"><label>Verified number (change nahi ho sakta)</label><input id="edit-phone" type="text" disabled style="opacity:.6"></div>
     <div class="field"><label>Profile colour</label><div class="color-row" id="edit-colors"></div></div>
     <button class="btn-primary" id="edit-save" style="width:100%">Save Karein</button>
     <button class="ghost-btn" id="edit-cancel" style="margin-top:12px;color:var(--ink2)">Cancel</button>
   </div>
+
+  <!-- BOTTOM SHEET (menus / info / forms) -->
+  <div id="sheetwrap"><div id="sheet"></div></div>
 
   <div class="toast" id="toast"></div>
 </div>
 
 <script>
 /* ============================================================
-   RABTA ENGINES — pure logic, no DOM access.
-   1) Contact simulation engine (local, on-device)
-   2) Rabta AI — offline rule-based assistant
-   3) Ideas data   4) Design Maker renderer
+   RABTA v2 ENGINES — pure logic, no DOM access.
+   1) Sami AI — offline on-device assistant (rabtaAI)
+   2) Ideas data   3) Design Maker renderer
+   NOTE: v1 ki fake-contact SIMULATION engine v2 mein HATA di gayi
+   hai — Rabta v2 mein koi nakli contact/reply nahi hai.
    ============================================================ */
 function _pick(a){return a[Math.floor(Math.random()*a.length)];}
 function _has(t){for(var i=1;i<arguments.length;i++){if(t.indexOf(arguments[i])!==-1)return true;}return false;}
-
-/* ---------- 1) CONTACT SIMULATION ENGINE ---------- */
-var SIM_FALLBACKS=[
-  "Acha acha, samajh gaya 👍",
-  "Hmm theek hai, main dekhta hoon.",
-  "Okay! Aur sunao, kaam kaisa chal raha hai?",
-  "Bohat khoob! 👏",
-  "Sahi keh rahe ho bilkul.",
-  "Acha? Phir kya hua?",
-  "Theek hai, sham ko baat karte hain is par.",
-  "Haha 😄 sahi hai!",
-  "In Sha Allah sab behtar hoga.",
-  "Maine note kar liya hai ✔️",
-  "Zabardast! Aise hi mehnat karte raho 💪",
-  "Kal tak confirm karke batata hoon."
-];
-var SIM_BY_INTENT={
-  greeting:["Wa Alaikum Assalam! Kaise ho? 😊","Hello! Khairiyat? Kaafi din baad yaad kiya.","Assalam-o-Alaikum! Sunao, kya chal raha hai aaj kal?","Hey! Kaise ho, sab theek?"],
-  price:["Price thoda sa bata do, budget ke hisaab se dekhna hai.","Rates kya hain aapke? List bhej do.","Quality achi ho to price masla nahi, phir bhi andaza bata do.","Discount ho jayega agar 2-3 design ek sath karwaun? 😅"],
-  order:["Mujhe ek design order karna hai, details bhejta hoon.","Order confirm kar do mera, payment Easypaisa kar dunga.","Ek poster chahiye urgent, kal tak mil jayega?","Aap ka kaam dekha tha, mujhe bhi waisa hi chahiye. Order le lo!"],
-  design:["Logo ka design modern ho, zyada colours na hon.","Design mein naam bara aur saaf likhna, please.","Jo sample bheja tha waisa hi style rakhna.","Ek revision chahiye thi — rang thoda dark kar do."],
-  thumbnail:["Thumbnail aisa ho ke click karne ko dil kare 🔥","Goku wali video ke liye thumbnail bana do, text bara rakhna.","CTR wala thumbnail chahiye, face expression strong ho.","Thumbnail mein 3 words se zyada text na ho, suna hai ye best hota hai."],
-  video:["Video edit 1 minute ki ho, music trending wala lagana.","Reel kal post karni hai, edit ready rakhna.","Video mein captions zaroor lagana, log mute par dekhte hain.","Shorts ka size vertical hi rakhna 1080x1920."],
-  delivery:["Kal tak mil jayega? Thodi jaldi hai.","Jab ready ho jaye to file yahin bhej dena.","Koi jaldi nahi, araam se quality wala kaam karna.","Delivery time confirm kar do taake client ko bata sakun."],
-  thanks:["Shukriya! Kaam bohat pasand aya ❤️","JazakAllah, bohat acha kaam kiya aap ne.","Thank you! Agla order bhi aap ko hi dunga.","Bohat shukriya, waqai professional kaam hai 👏"],
-  bye:["Allah Hafiz! Phir baat hogi.","Okay bye, khayal rakhna 👋","Chalo theek hai, Allah Hafiz.","Bye! Kal milte hain."]
-};
-function simReplyFor(contact, userText){
-  var t=" "+String(userText||"").toLowerCase()+" ";
-  if(_has(t,"salam","assalam","hello","hi ","aoa","hey")) return _pick(SIM_BY_INTENT.greeting);
-  if(_has(t,"price","rate","charges","kitna","kitne","cost","fees","paisay","paisa")) return _pick(SIM_BY_INTENT.price);
-  if(_has(t,"thumbnail")) return _pick(SIM_BY_INTENT.thumbnail);
-  if(_has(t,"video","reel","shorts","edit")) return _pick(SIM_BY_INTENT.video);
-  if(_has(t,"logo","poster","banner","design")) return _pick(SIM_BY_INTENT.design);
-  if(_has(t,"order","chahiye","bana do","banwa")) return _pick(SIM_BY_INTENT.order);
-  if(_has(t,"kal","delivery","ready","kab milega","time")) return _pick(SIM_BY_INTENT.delivery);
-  if(_has(t,"shukriya","thank","jazak")) return _pick(SIM_BY_INTENT.thanks);
-  if(_has(t,"bye","allah hafiz","khuda hafiz")) return _pick(SIM_BY_INTENT.bye);
-  if(contact && contact.flavor && Math.random()<0.35) return _pick(contact.flavor);
-  return _pick(SIM_FALLBACKS);
-}
-
 /* ---------- 2) RABTA AI — OFFLINE ASSISTANT ---------- */
 var AI_DESIGN_IDEAS=[
   "🎨 Design Idea: 'Before / After' poster banao — ek side purana boring design, dusri side aap ka naya bold design. Ye format clients ko foran samjhata hai ke aap kya kar sakte ho.",
@@ -592,7 +625,7 @@ var AI_HASHTAGS=[
 ];
 function rabtaAI(q){
   var t=" "+String(q||"").toLowerCase()+" ";
-  if(_has(t,"salam","assalam","hello"," hi ","aoa"," hey ","kaise ho")) return _pick(["Wa Alaikum Assalam! 😊 Main Rabta AI hoon — design, video, business ya captions, kis cheez mein madad karun?","Hello! Khush aamdeed Rabta AI mein. Poochho: design idea, caption, hashtags, video idea — sab milega."]);
+  if(_has(t,"salam","assalam","hello"," hi ","aoa"," hey ","kaise ho")) return _pick(["Wa Alaikum Assalam! 😊 Main Sami AI hoon — design, video, business ya captions, kis cheez mein madad karun?","Hello! Khush aamdeed Sami AI mein. Poochho: design idea, caption, hashtags, video idea — sab milega."]);
   if(_has(t,"thumbnail")) return _pick(["🖼️ Thumbnail Tips:\n1) Sirf 3 words ka bara text rakho\n2) Face par strong expression + bright outline\n3) Background dark, subject bright — contrast hi click lata hai\n4) Ek hi focal point — bheed wala thumbnail fail hota hai\n5) Mobile par chhota karke check karo, text parha jaye to pass!", "🖼️ Acha thumbnail = curiosity. Jo video mein sab se shocking lamha ho, usi ko thumbnail banao — lekin jhoot wala clickbait nahi, warna log trust kho dete hain."]);
   if(_has(t,"logo")) return "🏷️ Logo Tips:\n1) Pehle pencil se 5-6 rough sketches banao\n2) 2 colours se zyada nahi — ek main, ek accent\n3) Chhote size mein bhi parha jaye, ye test lazmi hai\n4) Font bold aur saaf ho — fancy fonts logo ko kamzor karte hain\n5) Client ko 3 options do, zyada nahi — zyada options = confuse client.";
   if(_has(t,"caption")) return _pick(AI_CAPTIONS);
@@ -604,7 +637,7 @@ function rabtaAI(q){
   if(_has(t,"rang","colour","color")) return "🌈 Colour salah: Ek design mein 60-30-10 rule use karo — 60% main rang, 30% support, 10% accent. Tools: dark background + ek bright accent kabhi fail nahi hota. Aur hamesha yaad rakho — kam rang = zyada professional look.";
   if(_has(t,"font")) return "🔤 Font salah: Ek design mein zyada se zyada 2 fonts — ek headline ke liye bold, ek body ke liye simple. Headline hamesha bara aur bold rakho, yehi pehle nazar ata hai.";
   if(_has(t,"motivat","dil nahi","thak","haar","give up")) return "💪 Suno — haar wohi manta hai jo ruk jata hai. Aap ne beghair phone ke, zero investment se itna kuch banaya hai. Roz ka chhota sa qadam, ek din bari manzil ban jata hai. Aaj bas EK kaam mukammal karo — wahi jeet hai. 🌟";
-  if(_has(t,"kaun ho","tum kaun","your name","rabta ai")) return "🤖 Main Rabta AI hoon — Rabta app ka built-in offline assistant. Main internet ke baghair, isi device par chalta hoon aur design, video, business aur captions mein madad karta hoon.";
+  if(_has(t,"kaun ho","tum kaun","your name","rabta ai")) return "🤖 Main Sami AI hoon — Rabta app ka built-in offline assistant. Main internet ke baghair, isi device par chalta hoon aur design, video, business aur captions mein madad karta hoon.";
   if(_has(t,"shukriya","thank")) return "❤️ Khushi hui madad karke! Aur kuch chahiye to bas poochh lo — design, caption, idea, sab hazir.";
   if(_has(t,"idea")) return _pick(AI_DESIGN_IDEAS.concat(AI_VIDEO_IDEAS,AI_BIZ_IDEAS));
   return _pick([
@@ -687,449 +720,724 @@ function renderDesign(ctx,S,W,H){
   ctx.fillText("Made with Rabta • Design Maker",W/2,H-32); ctx.restore();
 }
 </script>
-
 <script>
-/* ================= RABTA UI ================= */
-var LS_KEY="rabta_v1";
-var AV_COLORS=["#0bb07b","#128c7e","#5b8def","#8e44ad","#e67e22","#e91e63","#00838f","#6d4c41"];
-var CONTACTS=[
- {id:"ahmed", name:"Ahmed Raza", color:"#5b8def", role:"Dost", flavor:["Yaar kal cricket dekhna hai, aja na!","Ammi ne biryani banayi hai, miss kar di tum ne 😄","Wo wala gaana bhejna jo kal sunaya tha."]},
- {id:"fatima", name:"Fatima Noor", color:"#e91e63", role:"Client — Logo Design", flavor:["Logo ki file vector mein bhi chahiye hogi.","Meri boutique ke liye pink shade zyada suit karega.","Instagram page par lagana hai, square size bhi bana dena."]},
- {id:"bilal", name:"Bilal Khan", color:"#e67e22", role:"Client — Thumbnails", flavor:["Bhai CTR bohat low hai, kuch aisa banao ke click lazmi ho.","Video kal 5 baje jayegi, thumbnail us se pehle chahiye.","Text mein 'SECRET' wala word use karna is dafa."]},
- {id:"zainab", name:"Zainab Ali", color:"#8e44ad", role:"Dost", flavor:["University ka assignment finally khatam ho gaya! 🎉","Kal chai peene chalte hain, bohat din ho gaye.","Wo photo bhejna jo function par li thi."]},
- {id:"usman", name:"Usman Tariq", color:"#00838f", role:"Client — Social Media", flavor:["Is month ke 12 posts ki list ready hai?","Dukaan ki anniversary wali post sab se pehle lagani hai.","Rates wali post par bohat calls ayi hain 👍"]},
- {id:"ayesha", name:"Ayesha Malik", color:"#c0a062", role:"Client — Video Editing", flavor:["Reel mein mera naam caption mein zaroor likhna.","Music thoda slow wala lagana is dafa.","Video ka cover frame bhi alag se bhej dena."]}
-];
-var EMOJIS=["😀","😂","❤️","👍","🔥","🎨","💼","🚀","👏","🙏","😍","🤔","✅","⭐","💪","🌙","📩","💰"];
+/* ================================================================
+   RABTA v2 — UI + BACKEND ADAPTER
+   ----------------------------------------------------------------
+   DATA MODEL (yehi structure Firebase Firestore mein jayegi):
+     users/{uid}                 -> { name, about, color, country,
+                                      dialCode, phoneE164, verifiedAt,
+                                      createdAt }
+     chats/{chatId}              -> { members:[uidA, uidB],
+                                      lastMsg, lastTs, updatedAt }
+     chats/{chatId}/messages/{id}-> { fromUid, text, ts, status,
+                                      replyTo }
+     reports/{reportId}          -> { fromUid, againstNumber, reason,
+                                      ts }
+   Sami AI koi Firestore user NAHI hai — ye on-device bot hai jo
+   har device par local rehta hai (online AI baad mein API se).
+   ================================================================ */
 
-var S=null;           /* persisted state */
-var curChat=null;     /* open chat contact id */
-var replyTo=null;     /* message being replied to */
-var simTimers=[];
+/* ---------- FIREBASE CONFIG (OWNER: apni values yahan paste karein) ----------
+   Guide: FIREBASE_SETUP_GUIDE.md — ye values PUBLIC app config hain,
+   password NAHI hain. Jab tak ye khaali hain, app LOCAL PREVIEW mode
+   mein chalti hai aur har jagah saaf label lagta hai. */
+var FIREBASE_CONFIG = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  appId: ""
+};
+
+/* ---------- BACKEND ADAPTER ----------
+   Saari registration/chat calls isi adapter se jati hain.
+   Firebase connect hone par sirf is object ke andar ke functions
+   asal Firebase calls se badle jayenge — UI code nahi badlega. */
+var Backend = {
+  mode: (FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.projectId) ? "firebase" : "local",
+  _pendingOtp: null, /* local preview only: {e164, code, ts} */
+
+  /* OTP bhejna.
+     FIREBASE INTEGRATION POINT: yahan Firebase Auth ka
+       auth.signInWithPhoneNumber(e164, appVerifier) lagega aur
+       confirmationResult save hoga. SMS asal telecom se jayega. */
+  requestOtp: function(e164){
+    if(this.mode === "firebase"){
+      return { ok:false, error:"Firebase config mojood hai lekin SDK integration abhi baaki hai — Muse ko batayein." };
+    }
+    /* LOCAL PREVIEW: koi SMS NAHI jata. Code isi screen par
+       "LOCAL PREVIEW" label ke sath dikhta hai — sirf testing ke liye. */
+    var code = String(Math.floor(100000 + Math.random()*900000));
+    this._pendingOtp = { e164:e164, code:code, ts:Date.now() };
+    return { ok:true, mode:"local", previewCode:code };
+  },
+
+  /* OTP verify karna.
+     FIREBASE INTEGRATION POINT: confirmationResult.confirm(code). */
+  verifyOtp: function(code){
+    if(this.mode === "firebase"){
+      return { ok:false, error:"Firebase integration abhi baaki hai." };
+    }
+    if(!this._pendingOtp) return { ok:false, error:"Pehle OTP bhejein." };
+    if(Date.now() - this._pendingOtp.ts > 10*60*1000) return { ok:false, error:"Code expire ho gaya — dobara bhejein." };
+    if(String(code) !== this._pendingOtp.code) return { ok:false, error:"Ghalat code hai — dobara check karein." };
+    var e164 = this._pendingOtp.e164; this._pendingOtp = null;
+    return { ok:true, e164:e164 };
+  },
+
+  /* User document save karna.
+     FIREBASE INTEGRATION POINT: Firestore users/{uid} setDoc —
+     uid Firebase Auth se ayega. Local mode: localStorage. */
+  saveUser: function(user){ /* local: caller save() se persist karta hai */ return { ok:true }; },
+
+  /* Message bhejna.
+     FIREBASE INTEGRATION POINT: chats/{chatId}/messages addDoc +
+     chats/{chatId} ka lastMsg update. Local mode: localStorage. */
+  sendMessage: function(chatId, msg){ return { ok:true, id: msg.id }; }
+};
+
+/* ---------- COUNTRIES (dialing codes) ---------- */
+var COUNTRIES = [
+  {n:"Pakistan", d:"92"}, {n:"India", d:"91"}, {n:"Bangladesh", d:"880"},
+  {n:"United Arab Emirates", d:"971"}, {n:"Saudi Arabia", d:"966"},
+  {n:"Qatar", d:"974"}, {n:"Kuwait", d:"965"}, {n:"Oman", d:"968"},
+  {n:"Bahrain", d:"973"}, {n:"United Kingdom", d:"44"}, {n:"United States", d:"1"},
+  {n:"Canada", d:"1"}, {n:"Australia", d:"61"}, {n:"Germany", d:"49"},
+  {n:"France", d:"33"}, {n:"Italy", d:"39"}, {n:"Spain", d:"34"},
+  {n:"Netherlands", d:"31"}, {n:"Turkey", d:"90"}, {n:"Malaysia", d:"60"},
+  {n:"Singapore", d:"65"}, {n:"China", d:"86"}, {n:"Japan", d:"81"},
+  {n:"South Korea", d:"82"}, {n:"Indonesia", d:"62"}, {n:"Philippines", d:"63"},
+  {n:"Thailand", d:"66"}, {n:"Vietnam", d:"84"}, {n:"Sri Lanka", d:"94"},
+  {n:"Nepal", d:"977"}, {n:"Afghanistan", d:"93"}, {n:"Iran", d:"98"},
+  {n:"Iraq", d:"964"}, {n:"Egypt", d:"20"}, {n:"Nigeria", d:"234"},
+  {n:"Kenya", d:"254"}, {n:"South Africa", d:"27"}, {n:"Brazil", d:"55"},
+  {n:"Mexico", d:"52"}, {n:"Russia", d:"7"}, {n:"Ukraine", d:"380"},
+  {n:"Poland", d:"48"}, {n:"Sweden", d:"46"}, {n:"Norway", d:"47"},
+  {n:"Denmark", d:"45"}, {n:"Finland", d:"358"}, {n:"Ireland", d:"353"},
+  {n:"Portugal", d:"351"}, {n:"Greece", d:"30"}, {n:"New Zealand", d:"64"},
+  {n:"Maldives", d:"960"}, {n:"Bhutan", d:"975"}, {n:"Myanmar", d:"95"}
+];
+
+/* ---------- HELPERS / STATE ---------- */
+var LS_KEY = "rabta_v2";
+var AV_COLORS = ["#0bb07b","#128c7e","#5b8def","#8e44ad","#e67e22","#e91e63","#00838f","#6d4c41"];
+var EMOJIS = ["😀","😂","❤️","👍","🔥","🎨","💼","🚀","👏","🙏","😍","🤔","✅","⭐","💪","🌙","📩","💰"];
+var SAMI_ID = "sami";
+
+var S = null;          /* persisted state (v2) */
+var curChat = null;    /* open chat id: "sami" ya contact id */
+var replyTo = null;
+var aiTimer = null;
 
 function $(id){return document.getElementById(id);}
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function initials(n){return (n||"?").trim().split(/\s+/).map(function(w){return w[0];}).slice(0,2).join("").toUpperCase();}
 function fmtTime(ts){var d=new Date(ts);var h=d.getHours(),m=d.getMinutes();var ap=h>=12?"PM":"AM";h=h%12||12;return h+":"+("0"+m).slice(-2)+" "+ap;}
 function fmtDay(ts){var d=new Date(ts),now=new Date();if(d.toDateString()===now.toDateString())return fmtTime(ts);var y=new Date(now);y.setDate(now.getDate()-1);if(d.toDateString()===y.toDateString())return "Kal";return d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();}
-function toast(msg){var t=$("toast");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2200);}
-function contactById(id){for(var i=0;i<CONTACTS.length;i++)if(CONTACTS[i].id===id)return CONTACTS[i];return null;}
+function toast(msg){var t=$("toast");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2400);}
 
+function samiWelcome(){
+  return { id:1, from:"them", ts:Date.now(), status:"read", replyTo:null,
+    text:"Assalam-o-Alaikum! 🤖 Main Sami AI hoon — Rabta ka apna AI bot.\n\nMain isi device par chalta hoon (offline assistant) — design ideas, captions, hashtags, video/business ideas mein madad karta hoon. Kuch bhi poochhein!" };
+}
 function defaultState(){
-  var now=Date.now();
   return {
-    profile:null, dark:false,
-    chats:{
-      ahmed:{unread:2,msgs:[
-        {id:1,from:"them",text:"Assalam-o-Alaikum! Kaise ho?",ts:now-36e5*5,status:"read"},
-        {id:2,from:"them",text:"Suna hai tum ne apni app bana li hai? Rabta? 😮",ts:now-36e5*4.6,status:"read"}]},
-      fatima:{unread:1,msgs:[
-        {id:1,from:"me",text:"Assalam-o-Alaikum! Logo ke 3 samples ready hain, bhej dun?",ts:now-36e5*26,status:"read"},
-        {id:2,from:"them",text:"Wa Alaikum Assalam! Pehle wala sample bohat pasand aya. Bas naam thoda bara kar dein.",ts:now-36e5*25,status:"read"}]},
-      bilal:{unread:0,msgs:[
-        {id:1,from:"them",text:"Bhai nayi video arahi hai kal, thumbnail chahiye hoga 🔥",ts:now-36e5*30,status:"read"},
-        {id:2,from:"me",text:"Ho jayega Bilal bhai, video ka title bhej dein bas.",ts:now-36e5*29.5,status:"read"}]},
-      zainab:{unread:0,msgs:[{id:1,from:"them",text:"Kal ki class ki notes bhej dogi? Oh sorry, tum ne bana liye thay na 😅",ts:now-36e5*50,status:"read"}]},
-      usman:{unread:3,msgs:[
-        {id:1,from:"them",text:"Shoaib bhai, is month ka social media pack chahiye.",ts:now-36e5*2.2,status:"read"},
-        {id:2,from:"them",text:"12 posts + anniversary wali special post.",ts:now-36e5*2.1,status:"read"},
-        {id:3,from:"them",text:"Rate wahi purana wala chalega na?",ts:now-36e5*2,status:"read"}]},
-      ayesha:{unread:0,msgs:[{id:1,from:"me",text:"Reel ready hai, captions ke sath. Check karke batayein.",ts:now-36e5*8,status:"read"}]}
-    },
+    user:null,           /* {name, about, color, country, dial, phone, e164, verifiedAt} */
+    dark:false,
+    contacts:{},         /* id -> {name, number(e164), country, color, blocked} */
+    chats:{ sami:{ msgs:[ samiWelcome() ] } },
     myStatus:null,
-    seenStatus:{},
-    statuses:[
-      {cid:"fatima",text:"New collection is LIVE! ✨ Order on WhatsApp",ts:now-36e5*3,bg:"linear-gradient(140deg,#e91e63,#7b1fa2)"},
-      {cid:"bilal",text:"Kal 5 baje NAYI VIDEO 🔥 Thumbnail guess karo?",ts:now-36e5*6,bg:"linear-gradient(140deg,#ff6f00,#c62828)"},
-      {cid:"zainab",text:"Assignment done ✔️ Ab chai ka time ☕",ts:now-36e5*9,bg:"linear-gradient(140deg,#5b8def,#8e44ad)"},
-      {cid:"ahmed",text:"Cricket Sunday ko pakka! Kaun kaun araha hai? 🏏",ts:now-36e5*12,bg:"linear-gradient(140deg,#43a047,#00695c)"}
-    ],
-    calls:[
-      {cid:"usman",dir:"in",type:"voice",ts:now-36e5*2.4,dur:"4:32"},
-      {cid:"fatima",dir:"out",type:"video",ts:now-36e5*25.5,dur:"11:05"},
-      {cid:"bilal",dir:"miss",type:"voice",ts:now-36e5*31,dur:""},
-      {cid:"ahmed",dir:"in",type:"voice",ts:now-864e5*1.2,dur:"8:47"}
-    ],
-    ai:[{from:"bot",text:"Assalam-o-Alaikum! 🤖 Main Rabta AI hoon — aap ka offline assistant.\n\nPoochh sakte hain: design idea, thumbnail tips, caption, hashtags, video idea, business idea. Bas likh kar bhejein!"}],
     favs:{},
+    reports:[],
     design:{tpl:0,headline:"Eid Mega Sale",subtext:"50% OFF — Order Now!",c1:"#e91e63",c2:"#7b1fa2",gradient:true,shapes:[],stickers:[]}
   };
 }
 function save(){try{localStorage.setItem(LS_KEY,JSON.stringify(S));}catch(e){}}
 function load(){try{var raw=localStorage.getItem(LS_KEY);if(raw){S=JSON.parse(raw);return;}}catch(e){} S=defaultState(); save();}
+function chatOf(id){ if(!S.chats[id]) S.chats[id]={msgs:[]}; return S.chats[id]; }
+function lastMsg(id){var c=S.chats[id];if(!c||!c.msgs.length)return null;return c.msgs[c.msgs.length-1];}
 
-/* ---------- theme ---------- */
+/* ---------- THEME ---------- */
 function applyTheme(){document.documentElement.setAttribute("data-theme",S.dark?"dark":"light");
-  $("dark-sw").classList.toggle("on",!!S.dark); $("top-theme").textContent=S.dark?"☀️":"🌙";}
+  var dsw=$("dark-sw"); if(dsw)dsw.classList.toggle("on",!!S.dark);
+  var tt=$("top-theme"); if(tt)tt.textContent=S.dark?"☀️":"🌙";}
 
-/* ---------- color pickers ---------- */
-var selColor=AV_COLORS[0];
+/* ---------- COLOR PICKERS ---------- */
 function buildColorRow(el,current,onPick){
-  el.innerHTML=""; AV_COLORS.forEach(function(c){
+  if(!el)return; el.innerHTML=""; AV_COLORS.forEach(function(c){
     var b=document.createElement("button"); b.className="color-dot"+(c===current?" sel":""); b.style.background=c;
     b.onclick=function(){el.querySelectorAll(".color-dot").forEach(function(x){x.classList.remove("sel");});b.classList.add("sel");onPick(c);};
     el.appendChild(b);
   });
 }
 
-/* ---------- tabs ---------- */
+/* ---------- TABS ---------- */
 function switchTab(name){
   document.querySelectorAll(".tab").forEach(function(t){t.classList.toggle("active",t.dataset.tab===name);});
   document.querySelectorAll(".screen").forEach(function(sc){sc.classList.toggle("active",sc.id==="scr-"+name);});
   if(name==="design")drawDesign();
   if(name==="profile")renderProfile();
-  window.scrollTo(0,0);
 }
 document.querySelectorAll(".tab").forEach(function(t){t.onclick=function(){switchTab(t.dataset.tab);};});
 
-/* ---------- chats list ---------- */
-function lastMsg(cid){var c=S.chats[cid];if(!c||!c.msgs.length)return null;return c.msgs[c.msgs.length-1];}
-function tickHTML(st){if(st==="sent")return '<span class="ticks">✓</span>';if(st==="delivered")return '<span class="ticks">✓✓</span>';return '<span class="ticks read">✓✓</span>';}
-function totalUnread(){var n=0;CONTACTS.forEach(function(c){n+=(S.chats[c.id]?S.chats[c.id].unread||0:0);});return n;}
-function renderBadge(){var n=totalUnread();var b=$("chat-badge");b.style.display=n?"flex":"none";b.textContent=n;}
+/* ---------- BOTTOM SHEETS ---------- */
+function openSheet(html){ $("sheet").innerHTML='<div class="grab"></div>'+html; $("sheetwrap").classList.add("show"); }
+function closeSheet(){ $("sheetwrap").classList.remove("show"); }
+$("sheetwrap").addEventListener("click",function(e){ if(e.target.id==="sheetwrap") closeSheet(); });
 
+/* ================================================================
+   REGISTRATION FLOW
+   ================================================================ */
+var regColor = AV_COLORS[0];
+var REG = null; /* {name, about, country, dial, phone(national), e164} */
+
+function regStep(n){
+  [1,2,3].forEach(function(i){ $("reg-step-"+i).classList.toggle("on", i===n); });
+  $("reg").scrollTop = 0;
+}
+function fillCountrySelect(sel, selectedIdx){
+  sel.innerHTML = "";
+  COUNTRIES.forEach(function(c,i){
+    var o=document.createElement("option"); o.value=i; o.textContent=c.n+" (+"+c.d+")";
+    if(i===selectedIdx) o.selected=true; sel.appendChild(o);
+  });
+}
+function normalizePhone(raw, dial){
+  var digits = String(raw||"").replace(/\D/g,"");
+  if(digits.indexOf(dial)===0 && digits.length > dial.length + 6) digits = digits.slice(dial.length);
+  digits = digits.replace(/^0+/, "");
+  return digits;
+}
+$("reg-country").addEventListener("change",function(){
+  $("reg-dial").textContent = "+" + COUNTRIES[Number(this.value)].d;
+});
+$("reg-start").onclick = function(){ regStep(2); setTimeout(function(){$("reg-name").focus();},80); };
+$("reg-back-1").onclick = function(){ regStep(1); };
+$("reg-back-2").onclick = function(){ regStep(2); };
+
+$("reg-send-otp").onclick = function(){
+  var name = $("reg-name").value.trim();
+  if(name.length < 3){ toast("Poora naam likhein (kam se kam 3 haroof)"); $("reg-name").focus(); return; }
+  var cIdx = Number($("reg-country").value);
+  var country = COUNTRIES[cIdx];
+  var national = normalizePhone($("reg-phone").value, country.d);
+  if(national.length < 7 || national.length > 12){ toast("Sahi mobile number likhein"); $("reg-phone").focus(); return; }
+  var e164 = "+" + country.d + national;
+  REG = { name:name, about:$("reg-about").value.trim(), country:country.n, dial:country.d, phone:national, e164:e164 };
+  var res = Backend.requestOtp(e164);
+  if(!res.ok){ toast(res.error); return; }
+  showOtpStep(res);
+};
+
+var resendTimer = null;
+function showOtpStep(res){
+  regStep(3);
+  $("otp-sub").innerHTML = "6-digit code <b>"+esc(REG.e164)+"</b> par bheja gaya hai." +
+    (Backend.mode==="local" ? "<br>Abhi backend connect nahi — code neeche <b>Local Preview</b> mein nazar ayega, asal SMS nahi jayega." : "");
+  var pv = $("otp-preview");
+  if(Backend.mode==="local" && res.previewCode){
+    pv.style.display = "block";
+    pv.innerHTML = '<span class="mode-pill">Local Preview — SMS nahi gaya</span><span class="code">'+res.previewCode+'</span>Ye code sirf is liye dikh raha hai taake aap flow test kar saken. Firebase connect hone par code SMS se ayega, screen par nahi dikhega.';
+  } else { pv.style.display = "none"; }
+  document.querySelectorAll(".otp-box").forEach(function(b){ b.value=""; });
+  var rb = $("otp-resend"); rb.disabled = true; var left = 30;
+  rb.textContent = "Code dobara bhejein ("+left+"s)";
+  clearInterval(resendTimer);
+  resendTimer = setInterval(function(){ left--; if(left<=0){ clearInterval(resendTimer); rb.disabled=false; rb.textContent="Code dobara bhejein"; } else rb.textContent = "Code dobara bhejein ("+left+"s)"; },1000);
+  setTimeout(function(){ document.querySelector(".otp-box").focus(); },80);
+}
+$("otp-resend").onclick = function(){
+  if(!REG) return;
+  var res = Backend.requestOtp(REG.e164);
+  if(!res.ok){ toast(res.error); return; }
+  toast("Naya code bheja gaya ✔️");
+  showOtpStep(res);
+};
+/* OTP boxes: auto-advance + paste support */
+var otpBoxes = Array.prototype.slice.call(document.querySelectorAll(".otp-box"));
+otpBoxes.forEach(function(box, i){
+  box.addEventListener("input",function(){
+    var v = box.value.replace(/\D/g,"");
+    if(v.length > 1){ /* paste: distribute */
+      v.split("").slice(0,6).forEach(function(ch,j){ if(otpBoxes[j]) otpBoxes[j].value = ch; });
+      var nxt = Math.min(v.length, 5); otpBoxes[nxt].focus(); return;
+    }
+    box.value = v;
+    if(v && i < 5) otpBoxes[i+1].focus();
+  });
+  box.addEventListener("keydown",function(e){
+    if(e.key==="Backspace" && !box.value && i>0) otpBoxes[i-1].focus();
+    if(e.key==="Enter") $("reg-verify").click();
+  });
+});
+$("reg-verify").onclick = function(){
+  var code = otpBoxes.map(function(b){return b.value;}).join("");
+  if(code.length !== 6){ toast("Poora 6-digit code likhein"); return; }
+  var res = Backend.verifyOtp(code);
+  if(!res.ok){ toast(res.error); return; }
+  S.user = {
+    name: REG.name, about: REG.about || "Rabta use kar raha hoon 🚀", color: regColor,
+    country: REG.country, dial: REG.dial, phone: REG.phone, e164: REG.e164,
+    verifiedAt: Date.now()
+  };
+  Backend.saveUser(S.user);
+  REG = null;
+  save();
+  $("reg").classList.remove("show");
+  toast("🎉 Account verified — khush aamdeed, "+S.user.name.split(" ")[0]+"!");
+  startApp();
+};
+
+/* ================================================================
+   CHATS — Sami AI (pinned) + real user chats (koi fake contact nahi)
+   ================================================================ */
+function tickHTML(st){if(st==="sent")return '<span class="ticks">✓</span>';if(st==="delivered")return '<span class="ticks">✓✓</span>';return '<span class="ticks read">✓✓</span>';}
+function renderBadge(){ var b=$("chat-badge"); b.style.display="none"; }
+
+function chatItemHTML(avatarBg, avatarTxt, name, badge, lm, timeTs, extraCls, pvBadge){
+  var pv = lm ? ((lm.from==="me"?tickHTML(lm.status):"")+esc(lm.text)) : "Tap karke chat shuru karein";
+  return '<div class="avatar" style="background:'+avatarBg+'">'+avatarTxt+'</div>'+
+    '<div class="mid"><div class="row1"><div class="nm">'+esc(name)+'</div>'+(timeTs?'<div class="tm">'+fmtDay(timeTs)+'</div>':"")+'</div>'+
+    '<div style="display:flex;gap:8px;align-items:center"><div class="pv" style="flex:1">'+pv+'</div>'+(badge||"")+(pvBadge||"")+'</div></div>';
+}
 function renderChats(){
-  var q=($("chat-search").value||"").toLowerCase();
-  var list=$("chatlist"); list.innerHTML="";
-  var rows=CONTACTS.map(function(c){return {c:c,lm:lastMsg(c.id)};})
-    .filter(function(r){return r.lm;})
-    .sort(function(a,b){return b.lm.ts-a.lm.ts;});
-  var any=false;
-  rows.forEach(function(r){
-    if(q && r.c.name.toLowerCase().indexOf(q)===-1) return;
-    any=true;
-    var un=S.chats[r.c.id].unread||0;
-    var pv=(r.lm.from==="me"?tickHTML(r.lm.status):"")+esc(r.lm.text);
-    var d=document.createElement("div"); d.className="chat-item";
-    d.innerHTML='<div class="avatar" style="background:'+r.c.color+'">'+initials(r.c.name)+'</div>'+
-      '<div class="mid"><div class="row1"><div class="nm">'+esc(r.c.name)+'</div><div class="tm'+(un?" unread":"")+'">'+fmtDay(r.lm.ts)+'</div></div>'+
-      '<div style="display:flex;gap:8px;align-items:center"><div class="pv" style="flex:1">'+pv+'</div>'+(un?'<div class="ubadge">'+un+'</div>':"")+'</div></div>';
-    d.onclick=function(){openChat(r.c.id);};
+  var q = ($("chat-search").value||"").toLowerCase();
+  var list = $("chatlist"); list.innerHTML = "";
+
+  /* --- Pinned: Sami AI --- */
+  var samiLm = lastMsg(SAMI_ID);
+  if(!q || "sami ai".indexOf(q) !== -1){
+    var lbl = document.createElement("div"); lbl.className="pin-label"; lbl.textContent = "📌 Pinned";
+    list.appendChild(lbl);
+    var d = document.createElement("div"); d.className="chat-item";
+    d.innerHTML = chatItemHTML("linear-gradient(135deg,#0bb07b,#075e54)","🤖","Sami AI",
+      '<span class="ai-badge">AI Bot</span>', samiLm, samiLm?samiLm.ts:null, "", "");
+    d.onclick = function(){ openChat(SAMI_ID); };
+    list.appendChild(d);
+  }
+
+  /* --- User ke asal chats --- */
+  var ids = Object.keys(S.contacts).filter(function(id){ return S.chats[id]; });
+  ids.sort(function(a,b){ var la=lastMsg(a), lb=lastMsg(b); return ((lb?lb.ts:0)-(la?la.ts:0)); });
+  var shown = 0;
+  if(ids.length){
+    var lbl2 = document.createElement("div"); lbl2.className="pin-label"; lbl2.textContent = "💬 Aap Ki Chats";
+    list.appendChild(lbl2);
+  }
+  ids.forEach(function(id){
+    var c = S.contacts[id];
+    if(q && (c.name+" "+c.number).toLowerCase().indexOf(q)===-1) return;
+    shown++;
+    var lm = lastMsg(id);
+    var d = document.createElement("div"); d.className = "chat-item"+(c.blocked?" blocked":"");
+    var pvB = (Backend.mode==="local") ? '<span class="pv-badge">Preview</span>' : "";
+    d.innerHTML = chatItemHTML(c.color, initials(c.name), c.name + (c.blocked?" 🚫":""), "",
+      c.blocked ? {from:"them",text:"Blocked — messages band hain",status:"read"} : lm,
+      lm?lm.ts:null, "", pvB);
+    d.onclick = function(){ openChat(id); };
     list.appendChild(d);
   });
-  if(!any)list.innerHTML='<div class="empty-note">Koi chat nahi mili.<br>Search change karke dekhein.</div>';
+
+  if(!ids.length){
+    var e = document.createElement("div"); e.className="empty-note";
+    e.innerHTML = "Abhi aap ki koi chat nahi hai.<br><b>＋ Nayi Chat</b> se kisi verified number par<br>chat shuru karein — ya upar <b>Sami AI</b> se baat karein 🤖";
+    list.appendChild(e);
+  } else if(q && !shown){
+    var e2 = document.createElement("div"); e2.className="empty-note"; e2.textContent = "Is search se koi chat nahi mili.";
+    list.appendChild(e2);
+  }
   renderBadge();
 }
+$("chat-search").addEventListener("input", renderChats);
 
-/* ---------- calls ---------- */
-function renderCalls(){
-  var list=$("calllist"); list.innerHTML="";
-  S.calls.forEach(function(cl){
-    var c=contactById(cl.cid); if(!c)return;
-    var arrow=cl.dir==="in"?"↙":cl.dir==="out"?"↗":"↙";
-    var cls=cl.dir==="miss"?"dir-miss":cl.dir==="in"?"dir-in":"dir-out";
-    var label=cl.dir==="miss"?"Missed call":(cl.type==="video"?"Video call":"Voice call");
-    var d=document.createElement("div"); d.className="call-item";
-    d.innerHTML='<div class="avatar" style="background:'+c.color+'">'+initials(c.name)+'</div>'+
-      '<div class="mid"><div class="nm"'+(cl.dir==="miss"?' style="color:var(--danger)"':"")+'>'+esc(c.name)+'</div>'+
-      '<div class="dt"><span class="'+cls+'">'+arrow+'</span>'+fmtDay(cl.ts)+' • '+label+(cl.dur?' • '+cl.dur:"")+'</div></div>'+
-      '<button class="call-ic">'+(cl.type==="video"?"📹":"📞")+'</button>';
-    d.querySelector(".call-ic").onclick=function(ev){ev.stopPropagation();startCall(c.id,cl.type);};
-    d.onclick=function(){openChat(c.id);};
-    list.appendChild(d);
-  });
-  if(!S.calls.length)list.innerHTML='<div class="empty-note">Abhi koi call history nahi.</div>';
-}
-$("seg-chats").onclick=function(){$("seg-chats").classList.add("on");$("seg-calls").classList.remove("on");$("chatlist").style.display="";$("calllist").style.display="none";};
-$("seg-calls").onclick=function(){$("seg-calls").classList.add("on");$("seg-chats").classList.remove("on");$("chatlist").style.display="none";$("calllist").style.display="";renderCalls();};
-$("chat-search").addEventListener("input",renderChats);
+/* ---------- New chat (sheet) ---------- */
+$("fab").onclick = function(){
+  var opts = COUNTRIES.map(function(c,i){ return '<option value="'+i+'"'+(i===0?" selected":"")+'>'+c.n+' (+'+c.d+')</option>'; }).join("");
+  openSheet(
+    '<div class="sheet-title">💬 Nayi Chat</div>'+
+    '<div class="sheet-sub">Us shakhs ka naam aur number likhein jis se chat karni hai. '+(Backend.mode==="local" ? '<b>Local Preview:</b> abhi messages sirf is device par save hote hain — real delivery Firebase connect hone ke baad hogi.' : '')+'</div>'+
+    '<div class="field"><label>Naam</label><input id="nc-name" type="text" placeholder="e.g. Ahmed Raza"></div>'+
+    '<div class="field"><label>Country</label><select id="nc-country">'+opts+'</select></div>'+
+    '<div class="field"><label>Mobile number</label><div class="phone-row"><div class="dial" id="nc-dial">+92</div><input id="nc-phone" type="tel" inputmode="numeric" placeholder="3XX XXXXXXX"></div></div>'+
+    '<button class="btn-primary" id="nc-go">Chat Shuru Karein →</button>'
+  );
+  $("nc-country").addEventListener("change",function(){ $("nc-dial").textContent = "+" + COUNTRIES[Number(this.value)].d; });
+  $("nc-go").onclick = function(){
+    var name = $("nc-name").value.trim();
+    if(name.length < 2){ toast("Naam likhein"); return; }
+    var c = COUNTRIES[Number($("nc-country").value)];
+    var national = normalizePhone($("nc-phone").value, c.d);
+    if(national.length < 7 || national.length > 12){ toast("Sahi mobile number likhein"); return; }
+    var e164 = "+" + c.d + national;
+    /* ek number = ek hi chat */
+    var existing = Object.keys(S.contacts).filter(function(id){ return S.contacts[id].number === e164; })[0];
+    if(existing){ closeSheet(); openChat(existing); return; }
+    var id = "u" + Date.now();
+    S.contacts[id] = { name:name, number:e164, country:c.n, color:AV_COLORS[Math.floor(Math.random()*AV_COLORS.length)], blocked:false };
+    S.chats[id] = { msgs:[] };
+    save(); closeSheet(); renderChats(); openChat(id);
+    toast("Chat ban gayi ✔️");
+  };
+};
 
-/* ---------- chat window ---------- */
-function openChat(cid){
-  curChat=cid; var c=contactById(cid);
-  S.chats[cid].unread=0; save();
-  $("cw-av").style.background=c.color; $("cw-av").textContent=initials(c.name);
-  $("cw-name").textContent=c.name; $("cw-sub").textContent="online";
+/* ---------- Chat window ---------- */
+function openChat(id){
+  curChat = id; clearReply();
+  var isAI = (id === SAMI_ID);
+  if(isAI){
+    $("cw-av").style.background = "linear-gradient(135deg,#0bb07b,#075e54)";
+    $("cw-av").textContent = "🤖";
+    $("cw-name").textContent = "Sami AI";
+    $("cw-sub").textContent = "AI Bot • hamesha online (on-device)";
+  } else {
+    var c = S.contacts[id]; if(!c) return;
+    $("cw-av").style.background = c.color;
+    $("cw-av").textContent = initials(c.name);
+    $("cw-name").textContent = c.name;
+    $("cw-sub").textContent = c.number + " • " + c.country;
+  }
   $("chatwin").classList.add("open");
-  renderMsgs(); renderChats();
+  renderMsgs();
 }
-function closeChat(){$("chatwin").classList.remove("open");curChat=null;clearReply();simTimers.forEach(clearTimeout);simTimers=[];$("typing").classList.remove("show");}
-$("cw-back").onclick=closeChat;
+function closeChat(){ $("chatwin").classList.remove("open"); curChat=null; clearReply(); clearTimeout(aiTimer); $("typing").classList.remove("show"); }
+$("cw-back").onclick = closeChat;
+$("cw-who").onclick = function(){ if(curChat) showContactInfo(curChat); };
 
 function renderMsgs(){
-  var box=$("msglist"); box.innerHTML="";
-  var chip=document.createElement("div"); chip.className="sys-chip";
-  chip.textContent="🔒 Ye contact is device par simulated hai — Rabta ka local test engine. Asal messages kahin nahi jate.";
+  if(!curChat) return;
+  var box = $("msglist"); box.innerHTML = "";
+  var chip = document.createElement("div");
+  if(curChat === SAMI_ID){
+    chip.className = "sys-chip";
+    chip.textContent = "🤖 Sami AI aik on-device bot hai — asal insaan nahi. Online AI Firebase/API connect hone ke baad ayega.";
+  } else {
+    chip.className = "preview-chip";
+    chip.innerHTML = "🟡 <b>LOCAL PREVIEW</b> — Backend abhi connect nahi. Ye messages sirf is device par save hote hain aur abhi asal number par <b>nahi jate</b>. Real chat Firebase ke baad live hogi.";
+  }
   box.appendChild(chip);
-  S.chats[curChat].msgs.forEach(function(m){
-    var d=document.createElement("div"); d.className="msg "+m.from;
-    var q="";
-    if(m.replyTo){var orig=findMsg(m.replyTo);if(orig)q='<div class="quote">'+esc(orig.text.slice(0,60))+'</div>';}
-    d.innerHTML=q+'<span>'+esc(m.text)+'</span><div class="meta"><span class="mt">'+fmtTime(m.ts)+'</span>'+(m.from==="me"?tickHTML(m.status):"")+'</div>'+
+  chatOf(curChat).msgs.forEach(function(m){
+    var d = document.createElement("div"); d.className = "msg " + m.from;
+    var qq = "";
+    if(m.replyTo){ var orig = findMsg(m.replyTo); if(orig) qq = '<div class="quote">'+esc(orig.text.slice(0,60))+'</div>'; }
+    d.innerHTML = qq + '<span>'+esc(m.text)+'</span><div class="meta"><span class="mt">'+fmtTime(m.ts)+'</span>'+(m.from==="me"?tickHTML(m.status):"")+'</div>'+
       '<button class="reply-ic" title="Reply">↩</button>';
-    d.querySelector(".reply-ic").onclick=function(ev){ev.stopPropagation();setReply(m);};
+    d.querySelector(".reply-ic").onclick = function(ev){ ev.stopPropagation(); setReply(m); };
     box.appendChild(d);
   });
-  box.scrollTop=box.scrollHeight;
+  box.scrollTop = box.scrollHeight;
+  /* blocked bar */
+  var c = (curChat !== SAMI_ID) ? S.contacts[curChat] : null;
+  var bb = $("blockedbar");
+  if(c && c.blocked){
+    bb.classList.add("show");
+    bb.innerHTML = "🚫 Aap ne is contact ko <b>block</b> kiya hai — messages band hain.<br><button id='bb-unblock'>Unblock karein</button>";
+    $("cw-input").style.display = "none";
+    $("bb-unblock").onclick = function(){ setBlocked(curChat,false); };
+  } else {
+    bb.classList.remove("show"); bb.innerHTML = "";
+    $("cw-input").style.display = "";
+  }
 }
-function findMsg(id){var arr=S.chats[curChat].msgs;for(var i=0;i<arr.length;i++)if(arr[i].id===id)return arr[i];return null;}
-function setReply(m){replyTo=m.id;$("reply-q").textContent=m.text;$("replybar").classList.add("show");$("msg-input").focus();}
-function clearReply(){replyTo=null;$("replybar").classList.remove("show");}
-$("reply-x").onclick=clearReply;
+function findMsg(id){ var arr = chatOf(curChat).msgs; for(var i=0;i<arr.length;i++) if(arr[i].id===id) return arr[i]; return null; }
+function setReply(m){ replyTo = m.id; $("reply-q").textContent = m.text; $("replybar").classList.add("show"); $("msg-input").focus(); }
+function clearReply(){ replyTo = null; var rb=$("replybar"); if(rb) rb.classList.remove("show"); }
+$("reply-x").onclick = clearReply;
 
-/* emoji bar */
-EMOJIS.forEach(function(e){var b=document.createElement("button");b.textContent=e;b.onclick=function(){var i=$("msg-input");i.value+=e;i.focus();};$("emojibar").appendChild(b);});
-$("emoji-btn").onclick=function(){$("emojibar").classList.toggle("show");};
+EMOJIS.forEach(function(e){ var b=document.createElement("button"); b.textContent=e; b.onclick=function(){ var i=$("msg-input"); i.value+=e; i.focus(); }; $("emojibar").appendChild(b); });
+$("emoji-btn").onclick = function(){ $("emojibar").classList.toggle("show"); };
 
 function sendMsg(){
-  var inp=$("msg-input"); var text=inp.value.trim(); if(!text||!curChat)return;
-  var cid=curChat;
-  var m={id:Date.now(),from:"me",text:text,ts:Date.now(),status:"sent",replyTo:replyTo};
-  S.chats[cid].msgs.push(m); save(); inp.value=""; inp.style.height="auto"; clearReply();
+  var inp = $("msg-input"); var text = inp.value.trim(); if(!text || !curChat) return;
+  var id = curChat;
+  var chat = chatOf(id);
+  if(id !== SAMI_ID && S.contacts[id] && S.contacts[id].blocked){ toast("Ye contact blocked hai — pehle unblock karein"); return; }
+  var m = { id:Date.now(), from:"me", text:text, ts:Date.now(), status:"sent", replyTo:replyTo };
+  chat.msgs.push(m);
+  Backend.sendMessage(id, m);
+  save(); inp.value=""; inp.style.height="auto"; clearReply();
   renderMsgs(); renderChats();
-  /* delivered tick */
-  simTimers.push(setTimeout(function(){m.status="delivered";save();if(curChat===cid)renderMsgs();},450));
-  /* simulated reply */
-  var c=contactById(cid);
-  var think=900+Math.random()*1100;
-  simTimers.push(setTimeout(function(){if(curChat===cid)$("typing").classList.add("show");$("cw-sub").textContent="typing…";},think));
-  simTimers.push(setTimeout(function(){
-    $("typing").classList.remove("show"); $("cw-sub").textContent="online";
-    m.status="read";
-    S.chats[cid].msgs.push({id:Date.now()+1,from:"them",text:simReplyFor(c,text),ts:Date.now(),status:"read",replyTo:null});
-    if(curChat!==cid){S.chats[cid].unread=(S.chats[cid].unread||0)+1;}
-    save(); if(curChat===cid)renderMsgs(); renderChats();
-  },think+1300+Math.random()*900));
-}
-$("msg-send").onclick=sendMsg;
-$("msg-input").addEventListener("keydown",function(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMsg();}});
-$("msg-input").addEventListener("input",function(){this.style.height="auto";this.style.height=Math.min(this.scrollHeight,96)+"px";});
 
-/* ---------- mock call screen ---------- */
-var callTimer=null,callSecs=0,callContact=null,callType="voice";
-function startCall(cid,type){
-  callContact=contactById(cid); callType=type||"voice"; callSecs=0;
-  $("call-av").style.background=callContact.color; $("call-av").textContent=initials(callContact.name);
-  $("call-name").textContent=callContact.name;
-  $("call-status").textContent=(callType==="video"?"video ":"")+"calling… (simulated)";
-  $("callscreen").classList.add("show");
-  setTimeout(function(){
-    if(!$("callscreen").classList.contains("show"))return;
-    $("call-status").textContent="00:00";
-    callTimer=setInterval(function(){callSecs++;var m=Math.floor(callSecs/60),s=callSecs%60;$("call-status").textContent=("0"+m).slice(-2)+":"+("0"+s).slice(-2);},1000);
-  },1600);
+  if(id === SAMI_ID){
+    /* Sami AI reply — rabtaAI engine (on-device). Ye BOT hai, label har jagah saaf hai. */
+    setTimeout(function(){ if(curChat===SAMI_ID) $("typing").classList.add("show"); }, 500);
+    aiTimer = setTimeout(function(){
+      $("typing").classList.remove("show");
+      var ans = rabtaAI(text);
+      chat.msgs.push({ id:Date.now()+1, from:"them", text:ans, ts:Date.now(), status:"read", replyTo:null });
+      m.status = "read";
+      save();
+      if(curChat===SAMI_ID) renderMsgs();
+      renderChats();
+    }, 1300 + Math.random()*700);
+  }
+  /* user chats: koi auto-reply NAHI — v2 mein fake replies khatam. */
 }
-function endCall(){
-  clearInterval(callTimer);
-  $("callscreen").classList.remove("show");
-  if(callContact){S.calls.unshift({cid:callContact.id,dir:"out",type:callType,ts:Date.now(),dur:callSecs?Math.floor(callSecs/60)+":"+("0"+(callSecs%60)).slice(-2):""});save();renderCalls();}
-  toast("Call khatam");
-}
-$("ca-end").onclick=endCall;
-$("ca-mute").onclick=function(){this.classList.toggle("off");toast("Mute "+(this.classList.contains("off")?"ON":"OFF"));};
-$("ca-spk").onclick=function(){this.classList.toggle("off");toast("Speaker "+(this.classList.contains("off")?"ON":"OFF"));};
-$("ca-vid").onclick=function(){toast("Camera switch (simulated)");};
-$("ca-msg").onclick=function(){var id=callContact.id;endCall();openChat(id);};
-$("cw-call").onclick=function(){startCall(curChat,"voice");};
-$("cw-vcall").onclick=function(){startCall(curChat,"video");};
-</script>
+$("msg-send").onclick = sendMsg;
+$("msg-input").addEventListener("keydown",function(e){ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); sendMsg(); } });
+$("msg-input").addEventListener("input",function(){ this.style.height="auto"; this.style.height=Math.min(this.scrollHeight,96)+"px"; });
 
-<script>
-/* ---------- STATUS ---------- */
-function renderMyStatus(){
-  $("my-status-av").style.background=S.profile?S.profile.color:"#999";
-  $("my-status-av").textContent=S.profile?initials(S.profile.name):"?";
-  $("my-status-dt").textContent=S.myStatus?("Posted • "+fmtDay(S.myStatus.ts)):"Tap karein, status lagayein";
-}
-function renderStatuses(){
-  var list=$("statuslist"); list.innerHTML="";
-  S.statuses.forEach(function(st,idx){
-    var c=contactById(st.cid); if(!c)return;
-    var seen=S.seenStatus[st.cid];
-    var d=document.createElement("div"); d.className="status-item";
-    d.innerHTML='<div class="ring'+(seen?" seen":"")+'"><div class="avatar" style="background:'+c.color+'">'+initials(c.name)+'</div></div>'+
-      '<div><div class="nm">'+esc(c.name)+'</div><div class="dt">'+fmtDay(st.ts)+'</div></div>';
-    d.onclick=function(){openViewer(st);};
-    list.appendChild(d);
-  });
-  renderMyStatus();
-}
-$("my-status-item").onclick=function(){
-  if(S.myStatus){openViewer({cid:"me",text:S.myStatus.text,ts:S.myStatus.ts,bg:S.myStatus.bg,mine:true});}
-  else{$("status-composer").classList.add("show");$("status-text").focus();}
+/* Sami AI ko kahin se bhi sawal bhejna (Ideas waghera) */
+function askSami(q){ openChat(SAMI_ID); $("msg-input").value = q; sendMsg(); }
+
+/* ---------- Chat menu: info / block / report / clear ---------- */
+$("cw-menu").onclick = function(){
+  if(!curChat) return;
+  var isAI = (curChat === SAMI_ID);
+  var c = isAI ? null : S.contacts[curChat];
+  var html = '<div class="sheet-title">'+(isAI ? "🤖 Sami AI" : esc(c.name))+'</div>';
+  html += '<button class="sheet-item" id="sm-info"><span class="ic">👤</span>Contact info dekhein</button>';
+  if(!isAI){
+    html += '<button class="sheet-item" id="sm-block"><span class="ic">🚫</span>'+(c.blocked ? "Unblock karein" : "Block karein")+'</button>';
+    html += '<button class="sheet-item danger" id="sm-report"><span class="ic">🚩</span>Report karein</button>';
+  }
+  html += '<button class="sheet-item" id="sm-clear"><span class="ic">🧹</span>Chat saaf karein</button>';
+  html += '<button class="sheet-item" id="sm-close"><span class="ic">✕</span>Band karein</button>';
+  openSheet(html);
+  $("sm-info").onclick = function(){ showContactInfo(curChat); };
+  if(!isAI){
+    $("sm-block").onclick = function(){ setBlocked(curChat, !c.blocked); closeSheet(); };
+    $("sm-report").onclick = function(){ showReport(curChat); };
+  }
+  $("sm-clear").onclick = function(){
+    chatOf(curChat).msgs = (curChat===SAMI_ID) ? [samiWelcome()] : [];
+    save(); closeSheet(); renderMsgs(); renderChats(); toast("Chat saaf ho gayi");
+  };
+  $("sm-close").onclick = closeSheet;
 };
-$("status-cancel").onclick=function(){$("status-composer").classList.remove("show");};
-$("status-post").onclick=function(){
-  var txt=$("status-text").value.trim(); if(!txt){toast("Pehle status likhein");return;}
-  var bgs=["linear-gradient(140deg,#0bb07b,#075e54)","linear-gradient(140deg,#e91e63,#7b1fa2)","linear-gradient(140deg,#ff6f00,#c62828)","linear-gradient(140deg,#232526,#8a6d1f)"];
-  S.myStatus={text:txt,ts:Date.now(),bg:bgs[Math.floor(Math.random()*bgs.length)]};
+
+function showContactInfo(id){
+  if(id === SAMI_ID){
+    openSheet(
+      '<div class="contact-hero"><div class="avatar" style="background:linear-gradient(135deg,#0bb07b,#075e54)">🤖</div>'+
+      '<h3>Sami AI</h3><span class="verified-badge">✓ Official Rabta Bot</span>'+
+      '<p><b>On-device assistant</b> — ye bot isi phone ke andar chalta hai, koi asal insaan nahi hai.<br>Online AI Firebase/API connect hone ke baad ayega.</p></div>'+
+      '<div class="set-list"><div class="info-line"><span class="k">Type</span><span>AI Bot (offline engine)</span></div>'+
+      '<div class="info-line"><span class="k">Kaam</span><span>Design / video / business ideas, captions, hashtags</span></div></div>'+
+      '<button class="btn-primary" id="ci-close" style="margin:14px;width:calc(100% - 28px)">Theek Hai</button>'
+    );
+  } else {
+    var c = S.contacts[id]; if(!c) return;
+    openSheet(
+      '<div class="contact-hero"><div class="avatar" style="background:'+c.color+'">'+initials(c.name)+'</div>'+
+      '<h3>'+esc(c.name)+'</h3><span class="verified-badge">🟡 Preview contact — backend pending</span>'+
+      '<p>Ye contact aap ne khud add kiya hai.</p></div>'+
+      '<div class="set-list"><div class="info-line"><span class="k">Number</span><span>'+esc(c.number)+'</span></div>'+
+      '<div class="info-line"><span class="k">Country</span><span>'+esc(c.country)+'</span></div>'+
+      '<div class="info-line"><span class="k">Status</span><span>'+(c.blocked ? "🚫 Blocked" : "Active")+'</span></div></div>'+
+      '<button class="btn-primary" id="ci-close" style="margin:14px;width:calc(100% - 28px)">Theek Hai</button>'
+    );
+  }
+  $("ci-close").onclick = closeSheet;
+}
+
+function setBlocked(id, val){
+  var c = S.contacts[id]; if(!c) return;
+  c.blocked = val; save(); renderChats();
+  if(curChat === id) renderMsgs();
+  toast(val ? "🚫 Contact block ho gaya" : "Contact unblock ho gaya ✔️");
+}
+
+/* Report — in-app action: local save hota hai, backend par team ko jayega */
+function showReport(id){
+  var c = S.contacts[id]; if(!c) return;
+  var reasons = ["Spam messages","Fraud / paisay mangna","Ghalat ya harassing content","Fake profile","Koi aur wajah"];
+  var radios = reasons.map(function(r,i){ return '<label class="radio-item"><input type="radio" name="rp-reason" value="'+esc(r)+'"'+(i===0?" checked":"")+'>'+esc(r)+'</label>'; }).join("");
+  openSheet(
+    '<div class="sheet-title">🚩 Report — '+esc(c.name)+'</div>'+
+    '<div class="sheet-sub">Wajah chunein. <b>Note:</b> ye aik <b>in-app action</b> hai — report abhi is device par save hogi, aur Firebase backend connect hone par review team ko bheji jayegi.</div>'+
+    radios+
+    '<button class="btn-primary" id="rp-go">Report Bhejein</button>'
+  );
+  $("rp-go").onclick = function(){
+    var sel = document.querySelector('input[name="rp-reason"]:checked');
+    S.reports.push({ against: c.number, name: c.name, reason: sel ? sel.value : reasons[0], ts: Date.now() });
+    save(); closeSheet();
+    toast("Report save ho gayi ✔️ (in-app action)");
+  };
+}
+
+/* ================================================================
+   STATUS — sirf mera apna (koi fake contact status nahi)
+   ================================================================ */
+function renderMyStatus(){
+  if(!S.user) return;
+  $("my-status-av").style.background = S.user.color;
+  $("my-status-av").textContent = initials(S.user.name);
+  $("my-status-dt").textContent = S.myStatus ? ("Posted • "+fmtDay(S.myStatus.ts)) : "Tap karein, status lagayein";
+}
+$("my-status-item").onclick = function(){
+  if(S.myStatus){
+    $("v-av").style.background = S.user.color;
+    $("v-av").textContent = initials(S.user.name);
+    $("v-name").textContent = "My Status";
+    $("v-time").textContent = fmtDay(S.myStatus.ts);
+    $("v-body").textContent = S.myStatus.text;
+    $("viewer").style.background = S.myStatus.bg;
+    $("viewer").classList.add("show");
+    var fill = $("v-bar-fill"); fill.style.transition="none"; fill.style.width="0";
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ fill.style.transition="width 5s linear"; fill.style.width="100%"; }); });
+    clearTimeout(window._vTimer); window._vTimer = setTimeout(function(){ $("viewer").classList.remove("show"); }, 5000);
+  } else { $("status-composer").classList.add("show"); $("status-text").focus(); }
+};
+$("v-close").onclick = function(){ $("viewer").classList.remove("show"); clearTimeout(window._vTimer); };
+$("status-cancel").onclick = function(){ $("status-composer").classList.remove("show"); };
+$("status-post").onclick = function(){
+  var txt = $("status-text").value.trim(); if(!txt){ toast("Pehle status likhein"); return; }
+  var bgs = ["linear-gradient(140deg,#0bb07b,#075e54)","linear-gradient(140deg,#e91e63,#7b1fa2)","linear-gradient(140deg,#ff6f00,#c62828)","linear-gradient(140deg,#232526,#8a6d1f)"];
+  S.myStatus = { text:txt, ts:Date.now(), bg:bgs[Math.floor(Math.random()*bgs.length)] };
   save(); $("status-text").value=""; $("status-composer").classList.remove("show");
   renderMyStatus(); toast("Status lag gaya ✔️");
 };
-var vTimer=null;
-function openViewer(st){
-  var mine=st.mine||st.cid==="me";
-  var c=mine?null:contactById(st.cid);
-  $("v-av").style.background=mine?S.profile.color:c.color;
-  $("v-av").textContent=mine?initials(S.profile.name):initials(c.name);
-  $("v-name").textContent=mine?"My Status":c.name;
-  $("v-time").textContent=fmtDay(st.ts);
-  $("v-body").textContent=st.text;
-  $("viewer").style.background=st.bg;
-  $("viewer").classList.add("show");
-  if(!mine){S.seenStatus[st.cid]=true;save();renderStatuses();}
-  var fill=$("v-bar-fill"); fill.style.transition="none"; fill.style.width="0";
-  requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.transition="width 5s linear";fill.style.width="100%";});});
-  clearTimeout(vTimer); vTimer=setTimeout(closeViewer,5000);
-}
-function closeViewer(){$("viewer").classList.remove("show");clearTimeout(vTimer);}
-$("v-close").onclick=closeViewer;
-$("viewer").onclick=function(e){if(e.target.id==="viewer"||e.target.id==="v-body")closeViewer();};
 
-/* ---------- DESIGN MAKER ---------- */
+/* ================================================================
+   DESIGN MAKER (v1 se — bila tabdeeli kaam karta hai)
+   ================================================================ */
 function designState(){
-  var d=S.design; var tpl=DESIGN_TEMPLATES[d.tpl]||DESIGN_TEMPLATES[0];
-  return {headline:d.headline,subtext:d.subtext,c1:d.c1,c2:d.c2,gradient:d.gradient,
-    headSize:tpl.headSize,subSize:tpl.subSize,deco:tpl.deco,shapes:d.shapes,stickers:d.stickers};
+  var d = S.design; var tpl = DESIGN_TEMPLATES[d.tpl] || DESIGN_TEMPLATES[0];
+  return { headline:d.headline, subtext:d.subtext, c1:d.c1, c2:d.c2, gradient:d.gradient,
+    headSize:tpl.headSize, subSize:tpl.subSize, deco:tpl.deco, shapes:d.shapes, stickers:d.stickers };
 }
 function drawDesign(){
-  var cv=$("design-canvas"); if(!cv||!S)return;
-  renderDesign(cv.getContext("2d"),designState(),1080,1080);
+  var cv = $("design-canvas"); if(!cv || !S) return;
+  renderDesign(cv.getContext("2d"), designState(), 1080, 1080);
 }
 function buildTplRow(){
-  var row=$("tpl-row"); row.innerHTML="";
+  var row = $("tpl-row"); row.innerHTML = "";
   DESIGN_TEMPLATES.forEach(function(t,i){
-    var d=document.createElement("div"); d.className="tpl"+(S.design.tpl===i?" sel":"");
-    d.style.background=t.grad?("linear-gradient(140deg,"+t.c1+","+t.c2+")"):t.c1;
-    d.innerHTML="<span>"+esc(t.name)+"</span>";
-    d.onclick=function(){S.design.tpl=i;S.design.c1=t.c1;S.design.c2=t.c2;S.design.gradient=t.grad;
-      $("d-c1").value=t.c1;$("d-c2").value=t.c2;$("d-grad-sw").classList.toggle("on",t.grad);
-      save();buildTplRow();drawDesign();};
+    var d = document.createElement("div"); d.className = "tpl" + (S.design.tpl===i ? " sel" : "");
+    d.style.background = t.grad ? ("linear-gradient(140deg,"+t.c1+","+t.c2+")") : t.c1;
+    d.innerHTML = "<span>"+esc(t.name)+"</span>";
+    d.onclick = function(){ S.design.tpl=i; S.design.c1=t.c1; S.design.c2=t.c2; S.design.gradient=t.grad;
+      $("d-c1").value=t.c1; $("d-c2").value=t.c2; $("d-grad-sw").classList.toggle("on",t.grad);
+      save(); buildTplRow(); drawDesign(); };
     row.appendChild(d);
   });
 }
 function syncDesignInputs(){
-  $("d-headline").value=S.design.headline; $("d-subtext").value=S.design.subtext;
-  $("d-c1").value=S.design.c1; $("d-c2").value=S.design.c2;
-  $("d-grad-sw").classList.toggle("on",!!S.design.gradient);
+  $("d-headline").value = S.design.headline; $("d-subtext").value = S.design.subtext;
+  $("d-c1").value = S.design.c1; $("d-c2").value = S.design.c2;
+  $("d-grad-sw").classList.toggle("on", !!S.design.gradient);
 }
-$("d-headline").addEventListener("input",function(){S.design.headline=this.value;save();drawDesign();});
-$("d-subtext").addEventListener("input",function(){S.design.subtext=this.value;save();drawDesign();});
-$("d-c1").addEventListener("input",function(){S.design.c1=this.value;save();drawDesign();});
-$("d-c2").addEventListener("input",function(){S.design.c2=this.value;save();drawDesign();});
-$("d-grad-sw").onclick=function(){S.design.gradient=!S.design.gradient;this.classList.toggle("on",S.design.gradient);save();drawDesign();};
+$("d-headline").addEventListener("input",function(){ S.design.headline=this.value; save(); drawDesign(); });
+$("d-subtext").addEventListener("input",function(){ S.design.subtext=this.value; save(); drawDesign(); });
+$("d-c1").addEventListener("input",function(){ S.design.c1=this.value; save(); drawDesign(); });
+$("d-c2").addEventListener("input",function(){ S.design.c2=this.value; save(); drawDesign(); });
+$("d-grad-sw").onclick = function(){ S.design.gradient=!S.design.gradient; this.classList.toggle("on",S.design.gradient); save(); drawDesign(); };
 document.querySelectorAll(".shape-btn").forEach(function(b){
-  b.onclick=function(){
+  b.onclick = function(){
     var spots=[[240,240],[840,240],[540,860],[200,820],[880,840],[540,180]];
-    var n=S.design.shapes.length+S.design.stickers.length;
-    var spot=spots[n%spots.length];
-    if(b.dataset.shape){S.design.shapes.push({type:b.dataset.shape,x:spot[0],y:spot[1],size:70,color:"#ffffff",alpha:.92});}
-    else{S.design.stickers.push({emoji:b.dataset.sticker,x:spot[0],y:spot[1],size:120});}
-    save();drawDesign();toast("Add ho gaya ✔️");
+    var n = S.design.shapes.length + S.design.stickers.length;
+    var spot = spots[n % spots.length];
+    if(b.dataset.shape){ S.design.shapes.push({type:b.dataset.shape,x:spot[0],y:spot[1],size:70,color:"#ffffff",alpha:.92}); }
+    else { S.design.stickers.push({emoji:b.dataset.sticker,x:spot[0],y:spot[1],size:120}); }
+    save(); drawDesign(); toast("Add ho gaya ✔️");
   };
 });
-$("d-clear").onclick=function(){S.design.shapes=[];S.design.stickers=[];save();drawDesign();toast("Canvas saaf ho gaya");};
-$("d-download").onclick=function(){
+$("d-clear").onclick = function(){ S.design.shapes=[]; S.design.stickers=[]; save(); drawDesign(); toast("Canvas saaf ho gaya"); };
+$("d-download").onclick = function(){
   drawDesign();
-  var cv=$("design-canvas");
-  /* Inside the Rabta Android app: save straight to Downloads/Rabta via the native bridge */
-  if(window.RabtaBridge&&window.RabtaBridge.savePNG){
-    window.RabtaBridge.savePNG(cv.toDataURL("image/png"),"rabta-poster-"+Date.now()+".png");
+  var cv = $("design-canvas");
+  if(window.RabtaBridge && window.RabtaBridge.savePNG){
+    window.RabtaBridge.savePNG(cv.toDataURL("image/png"), "rabta-poster-"+Date.now()+".png");
     return;
   }
-  if(cv.toBlob){cv.toBlob(function(blob){
-    var a=document.createElement("a");a.href=URL.createObjectURL(blob);
-    a.download="rabta-poster-"+Date.now()+".png";document.body.appendChild(a);a.click();a.remove();
-    setTimeout(function(){URL.revokeObjectURL(a.href);},4000);toast("Poster download ho gaya 🎉");
-  },"image/png");}
-  else{var a=document.createElement("a");a.href=cv.toDataURL("image/png");a.download="rabta-poster.png";a.click();toast("Poster download ho gaya 🎉");}
+  if(cv.toBlob){ cv.toBlob(function(blob){
+    var a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+    a.download="rabta-poster-"+Date.now()+".png"; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); },4000); toast("Poster download ho gaya 🎉");
+  },"image/png"); }
+  else { var a2=document.createElement("a"); a2.href=cv.toDataURL("image/png"); a2.download="rabta-poster.png"; a2.click(); toast("Poster download ho gaya 🎉"); }
 };
 
-/* ---------- RABTA AI CHAT ---------- */
-function renderAI(){
-  var list=$("ai-list"); list.innerHTML="";
-  S.ai.forEach(function(m){
-    var d=document.createElement("div"); d.className="bubble "+(m.from==="me"?"me":"bot");
-    d.textContent=m.text; list.appendChild(d);
-  });
-  list.scrollTop=list.scrollHeight;
-}
-function aiAsk(q){
-  q=(q||"").trim(); if(!q)return;
-  S.ai.push({from:"me",text:q}); save(); renderAI();
-  var list=$("ai-list");
-  var t=document.createElement("div"); t.className="bubble bot"; t.textContent="soch raha hoon…"; list.appendChild(t); list.scrollTop=list.scrollHeight;
-  setTimeout(function(){
-    var ans=rabtaAI(q); t.remove();
-    S.ai.push({from:"bot",text:ans}); save(); renderAI();
-  },650+Math.random()*500);
-}
-$("ai-send").onclick=function(){var i=$("ai-text");aiAsk(i.value);i.value="";};
-$("ai-text").addEventListener("keydown",function(e){if(e.key==="Enter"){aiAsk(this.value);this.value="";}});
-document.querySelectorAll(".ai-chips button").forEach(function(b){b.onclick=function(){aiAsk(b.dataset.q);};});
-
-/* ---------- IDEAS ---------- */
-var curCat="all";
+/* ================================================================
+   IDEAS (v1 se — "AI se poochho" ab Sami AI chat kholta hai)
+   ================================================================ */
+var curCat = "all";
 function renderIdeas(){
-  var list=$("idealist"); list.innerHTML="";
-  var shown=0;
-  IDEA_CARDS.forEach(function(idea,idx){
-    var fav=!!S.favs[idx];
-    if(curCat==="fav"&&!fav)return;
-    if(curCat!=="all"&&curCat!=="fav"&&idea.cat!==curCat)return;
+  var list = $("idealist"); list.innerHTML = "";
+  var shown = 0;
+  IDEA_CARDS.forEach(function(idea, idx){
+    var fav = !!S.favs[idx];
+    if(curCat==="fav" && !fav) return;
+    if(curCat!=="all" && curCat!=="fav" && idea.cat!==curCat) return;
     shown++;
-    var tagName=idea.cat==="business"?"Business":idea.cat==="youtube"?"YouTube":"Design";
-    var d=document.createElement("div"); d.className="idea-card";
-    d.innerHTML='<span class="tag">'+tagName+'</span><h3>'+esc(idea.t)+'</h3><p>'+esc(idea.d)+'</p>'+
-      '<div class="foot"><button class="use">AI se poochho →</button><button class="fav-btn'+(fav?" on":"")+'">'+(fav?"❤️":"🤍")+'</button></div>';
-    d.querySelector(".fav-btn").onclick=function(){S.favs[idx]=!S.favs[idx];if(!S.favs[idx])delete S.favs[idx];save();renderIdeas();renderProfile();};
-    d.querySelector(".use").onclick=function(){switchTab("ai");aiAsk(idea.cat==="youtube"?"YouTube video idea do":idea.cat==="business"?"Business idea do":"Design idea do");};
+    var tagName = idea.cat==="business" ? "Business" : idea.cat==="youtube" ? "YouTube" : "Design";
+    var d = document.createElement("div"); d.className = "idea-card";
+    d.innerHTML = '<span class="tag">'+tagName+'</span><h3>'+esc(idea.t)+'</h3><p>'+esc(idea.d)+'</p>'+
+      '<div class="foot"><button class="use">Sami AI se poochho →</button><button class="fav-btn'+(fav?" on":"")+'">'+(fav?"❤️":"🤍")+'</button></div>';
+    d.querySelector(".fav-btn").onclick = function(){ S.favs[idx]=!S.favs[idx]; if(!S.favs[idx]) delete S.favs[idx]; save(); renderIdeas(); renderProfile(); };
+    d.querySelector(".use").onclick = function(){ askSami(idea.cat==="youtube" ? "YouTube video idea do" : idea.cat==="business" ? "Business idea do" : "Design idea do"); };
     list.appendChild(d);
   });
-  if(!shown)list.innerHTML='<div class="empty-note">Abhi kuch nahi hai yahan.<br>❤️ dabaa kar ideas save karein.</div>';
+  if(!shown) list.innerHTML = '<div class="empty-note">Abhi kuch nahi hai yahan.<br>❤️ dabaa kar ideas save karein.</div>';
 }
 document.querySelectorAll("#cat-row button").forEach(function(b){
-  b.onclick=function(){curCat=b.dataset.cat;document.querySelectorAll("#cat-row button").forEach(function(x){x.classList.toggle("on",x===b);});renderIdeas();};
+  b.onclick = function(){ curCat=b.dataset.cat; document.querySelectorAll("#cat-row button").forEach(function(x){ x.classList.toggle("on", x===b); }); renderIdeas(); };
 });
 
-/* ---------- PROFILE / SETTINGS ---------- */
+/* ================================================================
+   PROFILE / SETTINGS
+   ================================================================ */
 function renderProfile(){
-  if(!S.profile)return;
-  $("prof-av").style.background=S.profile.color; $("prof-av").textContent=initials(S.profile.name);
-  $("prof-name").textContent=S.profile.name; $("prof-about").textContent=S.profile.about||"";
-  var n=Object.keys(S.favs).length; $("saved-count").textContent=n;
+  if(!S.user) return;
+  $("prof-av").style.background = S.user.color; $("prof-av").textContent = initials(S.user.name);
+  $("prof-name").textContent = S.user.name;
+  $("prof-verified").innerHTML = '<span class="verified-badge">✓ Verified Number</span>';
+  $("prof-about").textContent = S.user.about || "";
+  $("prof-phone").textContent = S.user.e164;
+  $("prof-country").textContent = S.user.country + " (+" + S.user.dial + ")";
+  $("saved-count").textContent = Object.keys(S.favs).length;
+  $("backend-card").innerHTML = (Backend.mode === "local")
+    ? "<b>Backend status: LOCAL PREVIEW</b> — Firebase abhi connect nahi hai. Registration, OTP aur chats is device par chalte hain; asal SMS aur real database ke liye owner ko Firebase project banana hai (guide: <b>FIREBASE_SETUP_GUIDE.md</b>)."
+    : "<b>Backend status: Firebase config mojood hai</b> — SDK integration ka agla step baaki hai.";
 }
-$("top-theme").onclick=function(){S.dark=!S.dark;save();applyTheme();};
-$("set-dark").onclick=function(){S.dark=!S.dark;save();applyTheme();};
-$("set-saved").onclick=function(){curCat="fav";document.querySelectorAll("#cat-row button").forEach(function(x){x.classList.toggle("on",x.dataset.cat==="fav");});switchTab("ideas");renderIdeas();};
-$("set-reset").onclick=function(){
-  if(confirm("Saara Rabta data (profile, chats, designs) delete ho jayega. Pakka?")){
+$("top-theme").onclick = function(){ S.dark=!S.dark; save(); applyTheme(); };
+$("set-dark").onclick = function(){ S.dark=!S.dark; save(); applyTheme(); };
+$("set-saved").onclick = function(){ curCat="fav"; document.querySelectorAll("#cat-row button").forEach(function(x){ x.classList.toggle("on", x.dataset.cat==="fav"); }); switchTab("ideas"); renderIdeas(); };
+$("set-reset").onclick = function(){
+  if(confirm("Logout ho jayega aur is device ka saara Rabta data (account, chats, designs) delete ho jayega. Pakka?")){
     localStorage.removeItem(LS_KEY); location.reload();
   }
 };
-var editColor=null;
-$("set-edit").onclick=function(){
-  $("edit-name").value=S.profile.name; $("edit-about").value=S.profile.about||""; editColor=S.profile.color;
-  buildColorRow($("edit-colors"),editColor,function(c){editColor=c;});
+var editColor = null;
+$("set-edit").onclick = function(){
+  if(!S.user) return;
+  $("edit-name").value = S.user.name; $("edit-about").value = S.user.about || "";
+  $("edit-phone").value = S.user.e164 + " • " + S.user.country;
+  editColor = S.user.color;
+  buildColorRow($("edit-colors"), editColor, function(c){ editColor = c; });
   $("editprof").classList.add("show");
 };
-$("edit-cancel").onclick=function(){$("editprof").classList.remove("show");};
-$("edit-save").onclick=function(){
-  var n=$("edit-name").value.trim(); if(!n){toast("Naam likhna zaroori hai");return;}
-  S.profile.name=n; S.profile.about=$("edit-about").value.trim(); S.profile.color=editColor||S.profile.color;
+$("edit-cancel").onclick = function(){ $("editprof").classList.remove("show"); };
+$("edit-save").onclick = function(){
+  var n = $("edit-name").value.trim(); if(!n){ toast("Naam likhna zaroori hai"); return; }
+  S.user.name = n; S.user.about = $("edit-about").value.trim(); S.user.color = editColor || S.user.color;
   save(); $("editprof").classList.remove("show"); renderProfile(); renderMyStatus(); toast("Profile save ho gayi ✔️");
 };
 
-/* ---------- SETUP / INIT ---------- */
-$("setup-go").onclick=function(){
-  var n=$("setup-name").value.trim(); if(!n){toast("Pehle apna naam likhein");$("setup-name").focus();return;}
-  S.profile={name:n,about:$("setup-about").value.trim()||"Rabta use kar raha hoon 🚀",color:selColor};
-  save(); startApp();
-};
+/* ================================================================
+   INIT
+   ================================================================ */
 function startApp(){
-  $("setup").classList.remove("show");
+  $("reg").classList.remove("show");
   $("main").classList.add("show");
-  applyTheme(); renderChats(); renderStatuses(); renderCalls();
-  buildTplRow(); syncDesignInputs(); drawDesign(); renderAI(); renderIdeas(); renderProfile();
+  applyTheme(); renderChats(); renderMyStatus();
+  buildTplRow(); syncDesignInputs(); drawDesign();
+  renderIdeas(); renderProfile();
 }
 load();
-buildColorRow($("setup-colors"),selColor,function(c){selColor=c;});
-if(S.dark)applyTheme();
+buildColorRow($("reg-colors"), regColor, function(c){ regColor = c; });
+fillCountrySelect($("reg-country"), 0);
+$("reg-dial").textContent = "+92";
+$("reg-mode-note").innerHTML = (Backend.mode === "local")
+  ? '<span class="mode-pill">Local Preview Mode</span><br>Abhi Firebase backend connect nahi — registration aur OTP is device par test hoga, code screen par label ke sath dikhega. Asal SMS backend connect hone par ayega.'
+  : "Firebase backend connected hai.";
+if(S.dark) applyTheme();
 setTimeout(function(){
   $("splash").classList.add("hide");
-  if(S.profile){startApp();}
-  else{$("setup").classList.add("show");}
-},1500);
+  if(S.user){ startApp(); }
+  else { $("reg").classList.add("show"); regStep(1); }
+}, 1500);
 </script>
 </body>
 </html>
