@@ -482,11 +482,14 @@ footer h4{font-family:"Sora",sans-serif; font-size:13px; font-weight:600; letter
 <main id="top">
   <!-- ============ HERO ============ -->
   <div class="hero">
+    <div class="aurora a1" aria-hidden="true"></div>
+    <div class="aurora a2" aria-hidden="true"></div>
+    <div class="ghost" aria-hidden="true">DESIGNER</div>
     <div class="wrap">
       <div class="hero-grid">
         <div>
           <span class="kicker h-in" style="--d:1">Shoaib Ahmed — Sukkur, Pakistan · Available for projects</span>
-          <h1 class="h-in" style="--d:2">Designs that get <span class="hl">clicks</span>, customers and sales.</h1>
+          <h1 class="hero-title" aria-label="Designs that get clicks, customers and sales."><span class="wm"><span class="ww" style="--i:0">Designs</span></span> <span class="wm"><span class="ww" style="--i:1">that</span></span> <span class="wm"><span class="ww" style="--i:2">get</span></span> <span class="wm"><span class="ww hl" style="--i:3">clicks,</span></span> <span class="wm"><span class="ww" style="--i:4">customers</span></span> <span class="wm"><span class="ww" style="--i:5">and</span></span> <span class="wm"><span class="ww" style="--i:6">sales.</span></span></h1>
           <p class="hero-sub h-in" style="--d:3">I'm <strong>Shoaib Ahmed</strong> — a <strong>graphic designer</strong>, <strong>short-form video editor</strong> and <strong>Python &amp; web developer</strong> from Sukkur, Pakistan. I design logos, thumbnails and social posts, edit reels people actually finish, and build the working websites that turn that attention into orders.</p>
           <div class="hero-ctas h-in" style="--d:4">
             <a class="btn btn-primary" href="#order">Start an Order
@@ -519,8 +522,13 @@ footer h4{font-family:"Sora",sans-serif; font-size:13px; font-weight:600; letter
       </div>
     </div>
     <div class="proof" aria-label="Services summary">
-      <div class="wrap">
-        <span>Logo Design</span><span>YouTube Thumbnails</span><span>Posters &amp; Flyers</span><span>Social Media Kits</span><span>Brand Identity</span><span>Business Websites</span>
+      <div class="marquee" id="marquee">
+        <div class="marquee-track" id="mqTrack">
+          <div class="mq-set"><span>Logo Design</span><span>YouTube Thumbnails</span><span>Posters &amp; Flyers</span><span>Social Media Kits</span><span>Brand Identity</span><span>Business Websites</span><span>Reels &amp; Shorts Editing</span><span>Python Automation</span></div>
+          <div class="mq-set" aria-hidden="true"><span>Logo Design</span><span>YouTube Thumbnails</span><span>Posters &amp; Flyers</span><span>Social Media Kits</span><span>Brand Identity</span><span>Business Websites</span><span>Reels &amp; Shorts Editing</span><span>Python Automation</span></div>
+          <div class="mq-set" aria-hidden="true"><span>Logo Design</span><span>YouTube Thumbnails</span><span>Posters &amp; Flyers</span><span>Social Media Kits</span><span>Brand Identity</span><span>Business Websites</span><span>Reels &amp; Shorts Editing</span><span>Python Automation</span></div>
+          <div class="mq-set" aria-hidden="true"><span>Logo Design</span><span>YouTube Thumbnails</span><span>Posters &amp; Flyers</span><span>Social Media Kits</span><span>Brand Identity</span><span>Business Websites</span><span>Reels &amp; Shorts Editing</span><span>Python Automation</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1255,6 +1263,115 @@ footer h4{font-family:"Sora",sans-serif; font-size:13px; font-weight:600; letter
   </div>
 </footer>
 
+<style>
+/* ============ v7 motion system — research spec B1–B13, vanilla ============ */
+:root{ --ease-out:cubic-bezier(.22,1,.36,1); --ease-spring:cubic-bezier(.34,1.56,.64,1); --mq-dur:26s }
+
+/* Scroll progress (B8) */
+#scrollProgress{position:fixed; top:0; left:0; right:0; height:3px; z-index:90; background:var(--accent); transform:scaleX(0); transform-origin:left center; pointer-events:none}
+
+/* Cursor glow (B12) — dark sections only, desktop only */
+#cursorGlow{position:fixed; top:0; left:0; width:380px; height:380px; margin:-190px 0 0 -190px; border-radius:50%; pointer-events:none; z-index:1;
+  background:radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), transparent 65%);
+  opacity:0; transition:opacity .45s var(--ease)}
+#cursorGlow.on{opacity:1}
+@media (pointer:coarse), (max-width:1023px){ #cursorGlow{display:none} }
+
+/* Preloader curtain (B1) — built by JS only, so no-JS never sees a gate */
+#intro{position:fixed; inset:0; z-index:200; background:var(--panel); display:flex; align-items:center; justify-content:center;
+  clip-path:inset(0 0 0 0); transition:clip-path .55s var(--ease-out) .09s; cursor:pointer}
+#intro .layer2{position:absolute; inset:0; background:var(--accent); clip-path:inset(0 0 0 0); transition:clip-path .55s var(--ease-out); z-index:0}
+#intro.lift, #intro.lift .layer2{clip-path:inset(0 0 100% 0)}
+#intro .in-core{position:relative; z-index:1; text-align:center; color:var(--panel-text)}
+#intro .in-mark{display:grid; place-items:center; width:64px; height:64px; margin:0 auto 18px; border-radius:16px; background:rgba(255,255,255,.08); border:1px solid var(--panel-line); font-family:"Sora",sans-serif; font-weight:800; font-size:24px}
+#intro .in-mark i{font-style:normal; color:#7FA8F7}
+#intro .in-name{font-family:"Sora",sans-serif; font-weight:700; font-size:19px; letter-spacing:-.01em}
+#intro .in-count{font-family:"Sora",sans-serif; font-weight:800; font-size:44px; line-height:1.1; margin-top:10px; font-variant-numeric:tabular-nums}
+#intro .in-bar{width:180px; height:3px; margin:16px auto 0; background:rgba(255,255,255,.16); border-radius:99px; overflow:hidden}
+#intro .in-bar i{display:block; height:100%; width:0%; background:#7FA8F7; border-radius:99px}
+#intro .in-skip{margin-top:14px; font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--panel-meta)}
+
+/* Dark hero stage (A1) + aurora light (B4) + ghost type (A3) */
+.hero{position:relative; background:var(--panel); color:var(--panel-body)}
+.hero .wrap{position:relative; z-index:2}
+.aurora{position:absolute; border-radius:50%; filter:blur(72px); pointer-events:none; z-index:0; will-change:transform}
+.aurora.a1{width:540px; height:540px; top:-190px; left:-140px; background:radial-gradient(circle, rgba(38,102,224,.55), transparent 65%); animation:drift1 18s ease-in-out infinite alternate}
+.aurora.a2{width:460px; height:460px; bottom:-200px; right:-110px; background:radial-gradient(circle, rgba(214,164,52,.26), rgba(38,102,224,.30) 55%, transparent 70%); animation:drift2 22s ease-in-out infinite alternate}
+.aurora.paused{animation-play-state:paused}
+@keyframes drift1{from{transform:translate(0,0) scale(1)} to{transform:translate(52px,34px) scale(1.14)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1.1)} to{transform:translate(-46px,-30px) scale(.96)}}
+.ghost{position:absolute; z-index:0; right:-8px; bottom:64px; font-family:"Sora",sans-serif; font-weight:800; font-size:clamp(96px,17vw,230px); line-height:.9; letter-spacing:-.02em; color:transparent; -webkit-text-stroke:1.5px rgba(255,255,255,.08); pointer-events:none; user-select:none}
+.hero .kicker{color:#9DB9F8}
+.hero .kicker::before{background:#9DB9F8}
+.hero h1{color:var(--panel-text)}
+.hero h1 .hl{color:#A9C6FA; text-decoration-color:rgba(143,178,248,.45)}
+.hero-sub{color:var(--panel-body)}
+.hero-sub strong{color:var(--panel-text)}
+.hero .text-link{color:var(--panel-text)}
+.hero .text-link:hover{color:#9DB9F8}
+.hero-meta span{color:var(--panel-meta)}
+.hero-meta svg{color:#9DB9F8}
+.hero .stats{border-top-color:var(--panel-line)}
+.hero .stat b{color:var(--panel-text)}
+.hero .stat span{color:var(--panel-meta)}
+.hero .hv-main{border-color:var(--panel-line)}
+.hero .hv-card{border-color:var(--panel)}
+.hero .hv-chip{background:rgba(13,32,58,.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-color:var(--panel-line)}
+.hero .hv-chip b{color:#fff}
+.hero .hv-chip span{color:rgba(255,255,255,.65)}
+.hero .hv-chip .dot{background:#7FA8F7}
+.hero .avail{background:rgba(255,255,255,.08)}
+
+/* Masked word reveals (B3) — hero runs on load, sections on scroll */
+.wm{display:inline-block; overflow:hidden; vertical-align:top; padding-bottom:.26em; margin-bottom:-.26em}
+.ww{display:inline-block; will-change:transform}
+.hero-title .ww{transform:translateY(118%); animation:wwIn .85s var(--ease-out) both; animation-delay:calc(.30s + var(--i,0)*70ms)}
+html.has-intro .hero-title .ww{animation-delay:calc(.62s + var(--i,0)*70ms)}
+html.has-intro .hero .h-in{animation-delay:calc(.55s + var(--d,0)*90ms)}
+@keyframes wwIn{from{transform:translateY(118%) rotate(2.5deg)} to{transform:translateY(0) rotate(0)}}
+.sec-head h2 .ww{transform:translateY(112%); transition:transform .7s var(--ease-out); transition-delay:calc(var(--i,0)*60ms)}
+.sec-head.rv.in h2 .ww, .sec-head.in h2 .ww{transform:translateY(0)}
+
+/* Velocity marquee (B5) */
+.proof{border-top-color:var(--panel-line); border-bottom-color:var(--panel-line); background:transparent}
+.marquee{overflow:hidden; padding:20px 0; -webkit-mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image:linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent)}
+.marquee-track{display:flex; width:max-content; animation:mqMove var(--mq-dur) linear infinite; will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.mq-set{display:flex; align-items:center; gap:30px; padding-right:30px; flex:none}
+.mq-set span{font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--panel-meta); display:inline-flex; align-items:center; gap:30px; white-space:nowrap}
+.mq-set span::after{content:""; width:5px; height:5px; border-radius:50%; background:#7FA8F7; flex:none}
+@keyframes mqMove{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+/* Card tilt + spotlight hooks (B7) */
+.work-card{--mx:50%; --my:50%}
+.work-card::before{content:""; position:absolute; inset:0; z-index:3; pointer-events:none; border-radius:inherit;
+  background:radial-gradient(340px circle at var(--mx) var(--my), color-mix(in srgb, var(--accent) 11%, transparent), transparent 65%);
+  opacity:0; transition:opacity .35s var(--ease)}
+.work-card.spot-on::before{opacity:1}
+.work-card.tilting{transition:transform .14s ease-out, box-shadow .3s var(--ease), border-color .3s var(--ease)}
+
+/* Press states everywhere (B6) */
+.pick:active, .filter-btn:active{transform:scale(.97)}
+.soc:active, .site-card:active, .chan:active{transform:scale(.99)}
+
+/* Mobile cuts (C2): no aurora drift, slower marquee, no ghost overflow */
+@media (max-width:767px){
+  .aurora{animation:none}
+  :root{--mq-dur:32s}
+  .ghost{font-size:88px; bottom:auto; top:18px}
+  .sec-head h2 .ww{transition-duration:.55s; transition-delay:calc(var(--i,0)*45ms)}
+}
+@media (prefers-reduced-motion: reduce){
+  .marquee-track{animation:none}
+  .aurora{animation:none}
+  .hero-title .ww, .sec-head h2 .ww{transform:none !important; animation:none !important; transition:none !important}
+  #cursorGlow{display:none}
+  #intro{display:none}
+}
+</style>
+<div id="scrollProgress" aria-hidden="true"></div>
+<div id="cursorGlow" aria-hidden="true"></div>
+
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1479,6 +1596,173 @@ footer h4{font-family:"Sora",sans-serif; font-size:13px; font-weight:600; letter
       });
     });
   });
+})();
+</script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+  var wideScreen = window.matchMedia('(min-width: 1024px)').matches;
+
+  /* ---- B1 · Preloader curtain: ≤1.2s, click to skip, once per session ---- */
+  var seen = false;
+  try { seen = !!sessionStorage.getItem('sa-intro-v7'); } catch(e) {}
+  if (!reduce && !seen) {
+    document.documentElement.classList.add('has-intro');
+    var intro = document.createElement('div');
+    intro.id = 'intro';
+    intro.setAttribute('role', 'presentation');
+    intro.innerHTML = '<div class="layer2" aria-hidden="true"></div><div class="in-core">' +
+      '<div class="in-mark">S<i>A</i></div><div class="in-name">Shoaib Ahmed</div>' +
+      '<div class="in-count" id="inCount">0%</div><div class="in-bar"><i id="inBarFill"></i></div>' +
+      '<div class="in-skip">Tap to skip</div></div>';
+    document.body.appendChild(intro);
+    document.body.style.overflow = 'hidden';
+    var inCount = intro.querySelector('#inCount');
+    var inFill = intro.querySelector('#inBarFill');
+    var introDone = false;
+    function liftIntro(){
+      if (introDone) return; introDone = true;
+      try { sessionStorage.setItem('sa-intro-v7', '1'); } catch(e) {}
+      intro.classList.add('lift');
+      document.body.style.overflow = '';
+      setTimeout(function(){ if (intro.parentNode) intro.parentNode.removeChild(intro); }, 750);
+    }
+    intro.addEventListener('click', liftIntro);
+    var iStart = null, iDur = 620;
+    function iTick(ts){
+      if (introDone) return;
+      if (!iStart) iStart = ts;
+      var p = Math.min((ts - iStart) / iDur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var v = Math.round(eased * 100);
+      inCount.textContent = v + '%';
+      inFill.style.width = v + '%';
+      if (p < 1) requestAnimationFrame(iTick); else setTimeout(liftIntro, 120);
+    }
+    requestAnimationFrame(iTick);
+    setTimeout(liftIntro, 1600); /* hard cap — the gate never outstays */
+  }
+
+  /* ---- B3 · Split section headlines into masked words ---- */
+  document.querySelectorAll('.sec-head h2').forEach(function(h){
+    var words = h.textContent.trim().split(/\s+/);
+    h.setAttribute('aria-label', h.textContent.trim());
+    h.innerHTML = words.map(function(w, i){
+      return '<span class="wm" aria-hidden="true"><span class="ww" style="--i:' + i + '">' + w + '</span></span>';
+    }).join(' ');
+  });
+
+  /* ---- B8 + B11 + B5 · One rAF loop for all scroll effects ---- */
+  var prog = document.getElementById('scrollProgress');
+  var aboutImg = document.querySelector('.about-art img');
+  if (aboutImg && !reduce && window.innerWidth >= 768) aboutImg.style.transition = 'none';
+  var mqTrack = document.getElementById('mqTrack');
+  var lastY = window.scrollY, mqRate = 1, ticking = false;
+  function scrollFx(){
+    ticking = false;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (prog) prog.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+    /* Velocity marquee: scroll speed makes the strip feel weighted, then it settles */
+    if (mqTrack && !reduce) {
+      var dy = Math.abs(window.scrollY - lastY);
+      var target = 1 + Math.min(dy / 22, 2.2);
+      mqRate += (target - mqRate) * 0.35;
+      var anims = mqTrack.getAnimations ? mqTrack.getAnimations() : [];
+      if (anims.length) anims[0].playbackRate = mqRate;
+    }
+    lastY = window.scrollY;
+    /* Scrubbed scale on the one showcase visual (About), 1 → 1.10 */
+    if (aboutImg && !reduce && window.innerWidth >= 768) {
+      var r = aboutImg.getBoundingClientRect();
+      var vh = window.innerHeight;
+      if (r.bottom > 0 && r.top < vh) {
+        var p = Math.min(Math.max((vh - r.top) / (vh + r.height), 0), 1);
+        aboutImg.style.transform = 'scale(' + (1 + p * 0.10).toFixed(3) + ')';
+      }
+    }
+  }
+  function onScrollFx(){ if (!ticking) { ticking = true; requestAnimationFrame(scrollFx); } }
+  window.addEventListener('scroll', onScrollFx, { passive: true });
+  scrollFx();
+  /* Marquee rate settles back to 1 when scrolling stops */
+  if (mqTrack && !reduce) {
+    setInterval(function(){
+      if (mqRate > 1.01) {
+        mqRate += (1 - mqRate) * 0.12;
+        var anims = mqTrack.getAnimations ? mqTrack.getAnimations() : [];
+        if (anims.length) anims[0].playbackRate = mqRate;
+      }
+    }, 90);
+  }
+
+  /* ---- B4 · Aurora pauses while the hero is offscreen ---- */
+  var auroras = document.querySelectorAll('.aurora');
+  var heroEl = document.querySelector('.hero');
+  if (heroEl && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        auroras.forEach(function(a){ a.classList.toggle('paused', !en.isIntersecting); });
+      });
+    }, { threshold: 0 }).observe(heroEl);
+  }
+
+  /* ---- B6 · Magnetic primary buttons (desktop, motion-safe) ---- */
+  if (finePointer && wideScreen && !reduce) {
+    document.querySelectorAll('.hero .btn-primary, .cta-band .btn-primary, .nav .btn-primary').forEach(function(btn){
+      var raf = null, gx = 0, gy = 0, tx2 = 0, ty2 = 0;
+      function magLoop(){
+        gx += (tx2 - gx) * 0.18; gy += (ty2 - gy) * 0.18;
+        btn.style.transform = 'translate(' + gx.toFixed(1) + 'px,' + gy.toFixed(1) + 'px)';
+        if (Math.abs(tx2 - gx) > 0.1 || Math.abs(ty2 - gy) > 0.1) raf = requestAnimationFrame(magLoop);
+        else { raf = null; if (tx2 === 0 && ty2 === 0) btn.style.transform = ''; }
+      }
+      function magKick(){ if (!raf) raf = requestAnimationFrame(magLoop); }
+      btn.addEventListener('pointermove', function(e){
+        var r = btn.getBoundingClientRect();
+        tx2 = Math.max(-10, Math.min(10, (e.clientX - (r.left + r.width / 2)) * 0.28));
+        ty2 = Math.max(-7, Math.min(7, (e.clientY - (r.top + r.height / 2)) * 0.32));
+        magKick();
+      });
+      btn.addEventListener('pointerleave', function(){ tx2 = 0; ty2 = 0; magKick(); });
+    });
+  }
+
+  /* ---- B7 · Work-card 3D tilt + pointer spotlight (desktop, motion-safe) ---- */
+  if (finePointer && wideScreen && !reduce) {
+    document.querySelectorAll('.work-card').forEach(function(card){
+      card.addEventListener('pointermove', function(e){
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+        card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        card.classList.add('tilting', 'spot-on');
+        card.style.transform = 'perspective(950px) rotateX(' + ((0.5 - py) * 5).toFixed(2) + 'deg) rotateY(' + ((px - 0.5) * 5).toFixed(2) + 'deg) translateY(-4px)';
+      });
+      card.addEventListener('pointerleave', function(){
+        card.classList.remove('tilting', 'spot-on');
+        card.style.transform = '';
+      });
+    });
+  }
+
+  /* ---- B12 · Cursor glow that only lives over dark sections ---- */
+  var glow = document.getElementById('cursorGlow');
+  if (glow && finePointer && wideScreen && !reduce) {
+    var mx = -400, my = -400, cx2 = -400, cy2 = -400, gRaf = null;
+    function glowLoop(){
+      cx2 += (mx - cx2) * 0.15; cy2 += (my - cy2) * 0.15;
+      glow.style.transform = 'translate(' + cx2.toFixed(1) + 'px,' + cy2.toFixed(1) + 'px)';
+      if (Math.abs(mx - cx2) > 0.4 || Math.abs(my - cy2) > 0.4) gRaf = requestAnimationFrame(glowLoop);
+      else gRaf = null;
+    }
+    document.addEventListener('pointermove', function(e){
+      mx = e.clientX; my = e.clientY;
+      var overDark = e.target.closest && e.target.closest('.hero, .dark-sec, footer, .cta-band');
+      glow.classList.toggle('on', !!overDark);
+      if (!gRaf) gRaf = requestAnimationFrame(glowLoop);
+    }, { passive: true });
+  }
 })();
 </script>
 </body>
