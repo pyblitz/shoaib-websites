@@ -13,194 +13,193 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- Scroll progress (B8) -->
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-<!-- Page-load curtain intro (B1) — JS lifts it; CSS failsafe hides it -->
+<!-- Page-load curtain — JS lifts it; CSS failsafe hides it -->
 <div class="curtain" id="curtain" aria-hidden="true">
   <div class="curtain-inner">
-    <span class="curtain-mark">SA</span>
     <span class="curtain-count" id="curtainCount">0</span>
     <span class="curtain-bar"><span id="curtainBarFill"></span></span>
-    <span class="curtain-name">SHOAIB AHMED</span>
+    <span class="curtain-name">SHOAIB&nbsp;AHMED — PORTFOLIO&nbsp;2026</span>
   </div>
 </div>
 <noscript><style>.curtain{display:none}</style></noscript>
 
-<!-- Cursor glow (B12, desktop only) -->
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= HEADER — four corners ================= -->
 <header class="site-header" id="siteHeader">
   <a class="brand" href="#top" aria-label="Shoaib Ahmed — home">
-    <span class="brand-mark">SA</span>
-    <span class="brand-text">Shoaib Ahmed<em>CREATOR</em></span>
+    <span class="brand-name">Shoaib Ahmed</span>
+    <span class="brand-role">/ Creator</span>
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
-    <span></span><span></span><span></span>
+    <span></span><span></span>
   </button>
   <nav class="site-nav" id="siteNav">
-    <a href="#videos">Top Videos</a>
-    <a href="#channels">Channels</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a class="nav-cta" href="#connect" data-magnetic>Work With Me</a>
+    <a href="#videos"><span class="roll"><span class="roll-in"><span>Videos</span><span>Videos</span></span></span></a>
+    <a href="#channels"><span class="roll"><span class="roll-in"><span>Channels</span><span>Channels</span></span></span></a>
+    <a href="#about"><span class="roll"><span class="roll-in"><span>About</span><span>About</span></span></span></a>
+    <a href="#services"><span class="roll"><span class="roll-in"><span>Services</span><span>Services</span></span></span></a>
+    <a class="nav-cta" href="#connect" data-magnetic>Work With Me <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
 
 <main id="top">
 
-  <!-- ================= HERO (dark stage, B2/B4/B11) ================= -->
+  <!-- ================= HERO — type is the hero ================= -->
   <section class="hero" id="hero">
-    <span class="aurora a-blue" aria-hidden="true"></span>
-    <span class="aurora a-gold" aria-hidden="true"></span>
-    <span class="hero-grain" aria-hidden="true"></span>
-    <span class="hero-ghost" aria-hidden="true">CREATOR</span>
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <p class="kicker reveal">Video Creator · Graphic Designer · Python Developer</p>
-        <h1 data-lines>Shoaib Ahmed<span class="dot">.</span></h1>
-        <p class="hero-sub reveal">I create anime edits people watch to the end, Python tricks
-          beginners actually understand, and designs that get clicks, customers and sales —
-          from Sukkur, Pakistan, to screens everywhere.</p>
-        <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="#videos" data-magnetic>▶ Watch Top Videos</a>
-          <a class="btn btn-ghost" href="#channels">Subscribe</a>
-        </div>
-        <div class="stats reveal" role="list" aria-label="Channel statistics">
-          <div class="stat" role="listitem">
-            <strong><span class="counter" data-target="227.9" data-decimals="1">0</span>K</strong>
-            <span>Lifetime views</span>
-          </div>
-          <div class="stat" role="listitem">
-            <strong><span class="counter" data-target="204">0</span>K+</strong>
-            <span>Top video views</span>
-          </div>
-          <div class="stat" role="listitem">
-            <strong><span class="counter" data-target="1591">0</span></strong>
-            <span>Aura999 subscribers</span>
-          </div>
-          <div class="stat" role="listitem">
-            <strong><span class="counter" data-target="738">0</span></strong>
-            <span>PySprint subscribers</span>
-          </div>
-        </div>
+    <div class="hero-meta mono reveal">
+      <span>Portfolio — 2026</span>
+      <span class="hero-meta-mid">Video · Design · Code</span>
+      <span>Sukkur, Pakistan</span>
+    </div>
+
+    <h1 class="hero-name" data-lines>SHOAIB<br><span class="h-pill"><img src="assets/portrait-hero.jpg" alt="Portrait of Shoaib Ahmed" width="740" height="925"></span>AHMED<span class="dot">.</span></h1>
+
+    <div class="hero-lower">
+      <p class="hero-sub reveal">I make anime edits people watch to the end, Python tricks
+        beginners actually understand, and designs that get clicks —
+        <em class="serif">from Sukkur, to screens everywhere.</em></p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-gold" href="#videos" data-magnetic>Watch Top Videos <span aria-hidden="true">↓</span></a>
+        <a class="btn btn-line" href="#channels">Subscribe <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="hero-photo" id="heroPhoto">
-        <div class="photo-reveal reveal">
-          <div class="photo-frame">
-            <img src="assets/portrait-hero.jpg" alt="Portrait of Shoaib Ahmed" width="740" height="925">
-            <span class="photo-badge">🎬 2 channels · 1 creator</span>
-          </div>
-        </div>
+      <a class="hero-badge" href="#videos" aria-label="Aura999 and PySprint — jump to top videos">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"></path></defs>
+          <text><textPath href="#circ">AURA999 • PYSPRINT • AURA999 • PYSPRINT • </textPath></text>
+        </svg>
+        <span class="hero-badge-play" aria-hidden="true">▶</span>
+      </a>
+    </div>
+
+    <div class="stats reveal" role="list" aria-label="Channel statistics">
+      <div class="stat" role="listitem">
+        <span class="stat-label mono">Lifetime views</span>
+        <strong><span class="counter" data-target="227.9" data-decimals="1">0</span>K</strong>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-label mono">Top video views</span>
+        <strong><span class="counter" data-target="204">0</span>K+</strong>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-label mono">Aura999 subscribers</span>
+        <strong><span class="counter" data-target="1591">0</span></strong>
+      </div>
+      <div class="stat" role="listitem">
+        <span class="stat-label mono">PySprint subscribers</span>
+        <strong><span class="counter" data-target="738">0</span></strong>
       </div>
     </div>
   </section>
 
-  <!-- ================= MARQUEE (B5) ================= -->
+  <!-- ================= MARQUEE ================= -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="mqTrack">
       <div class="mq-group">
-        <span>Anime Edits</span><i>✦</i><span>Python Tricks</span><i>✦</i><span>Thumbnails</span><i>✦</i><span>Video Editing</span><i>✦</i><span>Web Design</span><i>✦</i><span>Logo Design</span><i>✦</i><span>Shorts &amp; Reels</span><i>✦</i><span>Brand Posts</span><i>✦</i>
+        <span>Anime Edits</span><i>✦</i><span class="mq-out">Python Tricks</span><i>✦</i><span>Thumbnails</span><i>✦</i><span class="mq-out">Video Editing</span><i>✦</i><span>Web Design</span><i>✦</i><span class="mq-out">Logo Design</span><i>✦</i><span>Shorts &amp; Reels</span><i>✦</i><span class="mq-out">Brand Posts</span><i>✦</i>
       </div>
       <div class="mq-group">
-        <span>Anime Edits</span><i>✦</i><span>Python Tricks</span><i>✦</i><span>Thumbnails</span><i>✦</i><span>Video Editing</span><i>✦</i><span>Web Design</span><i>✦</i><span>Logo Design</span><i>✦</i><span>Shorts &amp; Reels</span><i>✦</i><span>Brand Posts</span><i>✦</i>
+        <span>Anime Edits</span><i>✦</i><span class="mq-out">Python Tricks</span><i>✦</i><span>Thumbnails</span><i>✦</i><span class="mq-out">Video Editing</span><i>✦</i><span>Web Design</span><i>✦</i><span class="mq-out">Logo Design</span><i>✦</i><span>Shorts &amp; Reels</span><i>✦</i><span class="mq-out">Brand Posts</span><i>✦</i>
       </div>
     </div>
   </div>
 
-  <!-- ================= TOP VIDEOS ================= -->
+  <!-- ================= 01 · TOP VIDEOS — index ================= -->
   <section class="section" id="videos">
     <div class="section-head reveal">
-      <p class="kicker">Proof, not promises</p>
+      <p class="chapter mono"><span>01</span> Proof, not promises</p>
       <h2 data-lines>Top Videos</h2>
-      <p>Real videos, real numbers — click any card to watch on YouTube.</p>
+      <p class="section-lede">Real videos, real numbers — select any row to watch on YouTube.</p>
     </div>
-    <div class="video-grid">
-      <a class="video-card reveal" href="https://youtu.be/b8Il3WLYJ8o" target="_blank" rel="noopener">
-        <span class="thumb">
-          <img src="https://i.ytimg.com/vi/b8Il3WLYJ8o/hqdefault.jpg" alt="What if Goku and Vegeta joined the Akatsuki — video thumbnail" loading="lazy">
-          <span class="play">▶</span>
-          <span class="views">204K+ views</span>
-        </span>
+    <div class="video-index">
+      <a class="video-row reveal" href="https://youtu.be/b8Il3WLYJ8o" target="_blank" rel="noopener">
+        <span class="v-idx mono">/01</span>
+        <span class="thumb"><img src="https://i.ytimg.com/vi/b8Il3WLYJ8o/hqdefault.jpg" alt="What if Goku and Vegeta joined the Akatsuki — video thumbnail" loading="lazy"><span class="play">▶</span></span>
         <span class="video-meta">
           <strong>WHAT IF Goku &amp; Vegeta Joined the Akatsuki 💀🔥</strong>
           <span>Aura999 · The channel's #1 video</span>
         </span>
+        <span class="v-views mono">204K+ views</span>
+        <span class="v-arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="video-card reveal" href="https://youtube.com/shorts/xsHVeTg7EU0" target="_blank" rel="noopener">
-        <span class="thumb">
-          <img src="https://i.ytimg.com/vi/xsHVeTg7EU0/hqdefault.jpg" alt="Goku Journey Special — video thumbnail" loading="lazy">
-          <span class="play">▶</span>
-          <span class="views">Journey Special</span>
-        </span>
+      <a class="video-row reveal" href="https://youtube.com/shorts/xsHVeTg7EU0" target="_blank" rel="noopener">
+        <span class="v-idx mono">/02</span>
+        <span class="thumb"><img src="https://i.ytimg.com/vi/xsHVeTg7EU0/hqdefault.jpg" alt="Goku Journey Special — video thumbnail" loading="lazy"><span class="play">▶</span></span>
         <span class="video-meta">
           <strong>Goku Journey Special — Every Era, One Story</strong>
           <span>Aura999 · Fight + emotion, line by line</span>
         </span>
+        <span class="v-views mono">Journey Special</span>
+        <span class="v-arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="video-card reveal" href="https://youtu.be/MgR7xGaKHHw" target="_blank" rel="noopener">
-        <span class="thumb">
-          <img src="https://i.ytimg.com/vi/MgR7xGaKHHw/hqdefault.jpg" alt="Saddest Anime Moments — video thumbnail" loading="lazy">
-          <span class="play">▶</span>
-          <span class="views">5-minute special</span>
-        </span>
+      <a class="video-row reveal" href="https://youtu.be/MgR7xGaKHHw" target="_blank" rel="noopener">
+        <span class="v-idx mono">/03</span>
+        <span class="thumb"><img src="https://i.ytimg.com/vi/MgR7xGaKHHw/hqdefault.jpg" alt="Saddest Anime Moments — video thumbnail" loading="lazy"><span class="play">▶</span></span>
         <span class="video-meta">
           <strong>Saddest Anime Moments 💔 — Agar Tum Saath Ho</strong>
           <span>Aura999 · The compilation that makes people cry</span>
         </span>
+        <span class="v-views mono">5-min special</span>
+        <span class="v-arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="video-card reveal" href="https://youtube.com/shorts/CsQliAEEQnE" target="_blank" rel="noopener">
-        <span class="thumb">
-          <img src="https://i.ytimg.com/vi/CsQliAEEQnE/hqdefault.jpg" alt="Python enumerate trick — video thumbnail" loading="lazy">
-          <span class="play">▶</span>
-          <span class="views">Trick #2</span>
-        </span>
+      <a class="video-row reveal" href="https://youtube.com/shorts/CsQliAEEQnE" target="_blank" rel="noopener">
+        <span class="v-idx mono">/04</span>
+        <span class="thumb"><img src="https://i.ytimg.com/vi/CsQliAEEQnE/hqdefault.jpg" alt="Python enumerate trick — video thumbnail" loading="lazy"><span class="play">▶</span></span>
         <span class="video-meta">
           <strong>Python Tricks You Didn't Know 🔥 enumerate()</strong>
           <span>PySprint · Daily Python, 30 seconds at a time</span>
         </span>
+        <span class="v-views mono">Trick #2</span>
+        <span class="v-arrow" aria-hidden="true">↗</span>
       </a>
     </div>
   </section>
 
-  <!-- ================= CHANNELS ================= -->
-  <section class="section section-alt" id="channels">
+  <!-- ================= 02 · CHANNELS — bento ================= -->
+  <section class="section" id="channels">
     <div class="section-head reveal">
-      <p class="kicker">Two channels, two worlds</p>
+      <p class="chapter mono"><span>02</span> Two channels, two worlds</p>
       <h2 data-lines>My Channels</h2>
     </div>
-    <div class="channel-grid">
-      <article class="channel-card reveal">
-        <span class="channel-icon">⚡</span>
-        <h3>Aura999</h3>
-        <p class="handle">@ytaura999-u3d · 1,591 subscribers</p>
+    <div class="channel-bento">
+      <article class="channel-card channel-main reveal">
+        <div class="channel-top mono"><span>Anime edits</span><span>@ytaura999-u3d</span></div>
+        <h3>Aura999 <span aria-hidden="true">⚡</span></h3>
         <p>Anime edits with a heartbeat — Goku crossovers, transformation journeys and sad
           compilations, cut beat-first with the dialogue kept alive.</p>
-        <a class="btn btn-primary" href="https://www.youtube.com/@ytaura999-u3d?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a>
+        <div class="channel-foot">
+          <span class="channel-num">1,591 <em>subscribers</em></span>
+          <a class="btn btn-gold" href="https://www.youtube.com/@ytaura999-u3d?sub_confirmation=1" target="_blank" rel="noopener" data-magnetic>Subscribe <span aria-hidden="true">↗</span></a>
+        </div>
       </article>
       <article class="channel-card reveal">
-        <span class="channel-icon">🐍</span>
-        <h3>PySprint</h3>
-        <p class="handle">@pyblitz · 738 subscribers</p>
+        <div class="channel-top mono"><span>Python, daily</span><span>@pyblitz</span></div>
+        <h3>PySprint <span aria-hidden="true">🐍</span></h3>
         <p>Daily Python tricks for beginners — one clean idea per Short, from loops and
           enumerate() to code that reads like a pro wrote it.</p>
-        <a class="btn btn-primary" href="https://www.youtube.com/@pyblitz?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a>
+        <div class="channel-foot">
+          <span class="channel-num">738 <em>subscribers</em></span>
+          <a class="btn btn-line" href="https://www.youtube.com/@pyblitz?sub_confirmation=1" target="_blank" rel="noopener">Subscribe <span aria-hidden="true">↗</span></a>
+        </div>
       </article>
     </div>
   </section>
 
-  <!-- ================= ABOUT ================= -->
+  <!-- ================= 03 · ABOUT — editorial ================= -->
   <section class="section" id="about">
+    <div class="section-head reveal">
+      <p class="chapter mono"><span>03</span> About the creator</p>
+    </div>
+    <p class="about-pull reveal">Programmer by study,<br><em class="serif">creator</em> by obsession.</p>
     <div class="about-grid">
       <div class="about-copy reveal reveal-l">
-        <p class="kicker">About the creator</p>
-        <h2 data-lines>Programmer by study,<br>creator by obsession.</h2>
         <p>I'm a final-year BSCS student at Sindh Agriculture University, Tandojam, based in
           Sukkur, Sindh. By day I write Python and design; by night I cut the edits my
           audience argues about in the comments.</p>
@@ -208,78 +207,81 @@
           cuts, the thumbnails, the code behind the websites. No team, no shortcuts:
           just a creator who studies what people love to watch, then makes his own version
           of it, better.</p>
-        <ul class="about-facts">
-          <li>🎓 BSCS (Final Year), SAU Tandojam</li>
-          <li>📍 Sukkur, Sindh, Pakistan</li>
-          <li>🛠️ Photoshop · Canva · CapCut · Python</li>
+        <ul class="about-facts mono">
+          <li><span>Degree</span> BSCS (Final Year), SAU Tandojam</li>
+          <li><span>Based</span> Sukkur, Sindh, Pakistan</li>
+          <li><span>Tools</span> Photoshop · Canva · CapCut · Python</li>
         </ul>
       </div>
       <div class="about-photo reveal reveal-r">
         <img src="assets/portrait.jpg" alt="Shoaib Ahmed" loading="lazy" width="740" height="925">
+        <span class="about-photo-cap mono">Shoaib Ahmed — b. Sukkur, PK</span>
       </div>
     </div>
   </section>
 
-  <!-- ================= SERVICES ================= -->
-  <section class="section section-dark" id="services">
+  <!-- ================= 04 · SERVICES — numbered rows ================= -->
+  <section class="section" id="services">
     <div class="section-head reveal">
-      <p class="kicker gold">Work with me</p>
+      <p class="chapter mono"><span>04</span> Work with me</p>
       <h2 data-lines>Creator Services</h2>
-      <p>The same craft behind 227.9K views — available for your channel or business.</p>
+      <p class="section-lede">The same craft behind 227.9K views — available for your channel or business.</p>
     </div>
-    <div class="service-grid">
-      <article class="service-card reveal">
-        <span>🎬</span>
+    <div class="service-index">
+      <article class="service-row reveal">
+        <span class="s-idx mono">/01</span>
         <h3>Short-Form Video Editing</h3>
         <p>Beat-synced Shorts, Reels and TikToks in the style that built Aura999 —
           fast cuts, glowing captions, hooks in the first second.</p>
+        <span class="s-arrow" aria-hidden="true">→</span>
       </article>
-      <article class="service-card reveal">
-        <span>🖼️</span>
+      <article class="service-row reveal">
+        <span class="s-idx mono">/02</span>
         <h3>YouTube Thumbnails</h3>
         <p>Scroll-stopping thumbnails designed around one idea: the click.
           Bold type, strong faces, zero clutter.</p>
+        <span class="s-arrow" aria-hidden="true">→</span>
       </article>
-      <article class="service-card reveal">
-        <span>🎨</span>
+      <article class="service-row reveal">
+        <span class="s-idx mono">/03</span>
         <h3>Design &amp; Websites</h3>
         <p>Logos, banners, social posts — and complete animated websites with real
           ordering and booking systems, coded by hand.</p>
+        <span class="s-arrow" aria-hidden="true">→</span>
       </article>
     </div>
     <p class="services-cta reveal">
-      <a class="btn btn-gold" href="#connect" data-magnetic>DM to Order →</a>
+      <a class="btn btn-gold" href="#connect" data-magnetic>DM to Order <span aria-hidden="true">→</span></a>
     </p>
   </section>
 
-  <!-- ================= CONNECT ================= -->
+  <!-- ================= 05 · CONNECT — index ================= -->
   <section class="section" id="connect">
     <div class="section-head reveal">
-      <p class="kicker">Say hello</p>
-      <h2 data-lines>Connect With Me</h2>
+      <p class="chapter mono"><span>05</span> Say hello</p>
+      <h2 class="connect-title" data-lines>Let's Work<br><em class="serif">together.</em></h2>
     </div>
-    <div class="social-grid">
-      <a class="social-card reveal" href="https://www.linkedin.com/in/shoaibahmed-designer/" target="_blank" rel="noopener"><strong>in</strong><span>LinkedIn</span><em>Professional profile</em></a>
-      <a class="social-card reveal" href="https://github.com/pyblitz" target="_blank" rel="noopener"><strong>{ }</strong><span>GitHub</span><em>@pyblitz — my code</em></a>
-      <a class="social-card reveal" href="https://www.youtube.com/@ytaura999-u3d" target="_blank" rel="noopener"><strong>▶</strong><span>Aura999</span><em>Anime edits</em></a>
-      <a class="social-card reveal" href="https://www.youtube.com/@pyblitz" target="_blank" rel="noopener"><strong>▶</strong><span>PySprint</span><em>Python tricks</em></a>
-      <a class="social-card reveal" href="https://www.instagram.com/pyblitz" target="_blank" rel="noopener"><strong>◎</strong><span>Instagram</span><em>@pyblitz</em></a>
-      <a class="social-card reveal" href="https://www.facebook.com/profile.php?id=61595305377478" target="_blank" rel="noopener"><strong>f</strong><span>Facebook</span><em>Designs &amp; updates</em></a>
+    <div class="social-index">
+      <a class="social-row reveal" href="https://www.linkedin.com/in/shoaibahmed-designer/" target="_blank" rel="noopener"><span class="so-name">LinkedIn</span><span class="so-note">Professional profile</span><span class="v-arrow" aria-hidden="true">↗</span></a>
+      <a class="social-row reveal" href="https://github.com/pyblitz" target="_blank" rel="noopener"><span class="so-name">GitHub</span><span class="so-note">@pyblitz — my code</span><span class="v-arrow" aria-hidden="true">↗</span></a>
+      <a class="social-row reveal" href="https://www.youtube.com/@ytaura999-u3d" target="_blank" rel="noopener"><span class="so-name">Aura999</span><span class="so-note">Anime edits</span><span class="v-arrow" aria-hidden="true">↗</span></a>
+      <a class="social-row reveal" href="https://www.youtube.com/@pyblitz" target="_blank" rel="noopener"><span class="so-name">PySprint</span><span class="so-note">Python tricks</span><span class="v-arrow" aria-hidden="true">↗</span></a>
+      <a class="social-row reveal" href="https://www.instagram.com/pyblitz" target="_blank" rel="noopener"><span class="so-name">Instagram</span><span class="so-note">@pyblitz</span><span class="v-arrow" aria-hidden="true">↗</span></a>
+      <a class="social-row reveal" href="https://www.facebook.com/profile.php?id=61595305377478" target="_blank" rel="noopener"><span class="so-name">Facebook</span><span class="so-note">Designs &amp; updates</span><span class="v-arrow" aria-hidden="true">↗</span></a>
     </div>
   </section>
 
 </main>
 
-<!-- ================= FOOTER ================= -->
+<!-- ================= FOOTER — final composition ================= -->
 <footer class="site-footer">
+  <p class="footer-giant" aria-hidden="true">SHOAIB AHMED</p>
   <div class="footer-inner">
-    <p class="footer-brand">Shoaib Ahmed<span>.</span></p>
     <p>Creator of Aura999 &amp; PySprint · Sukkur, Pakistan</p>
     <p class="footer-links">
-      <a href="#videos">Top Videos</a> · <a href="#channels">Channels</a> ·
-      <a href="#about">About</a> · <a href="#services">Services</a>
+      <a href="#videos">Top Videos</a><a href="#channels">Channels</a><a href="#about">About</a><a href="#services">Services</a>
     </p>
-    <p class="footer-small">Hand-coded with HTML, CSS &amp; JavaScript — no page builders. © 2026 Shoaib Ahmed.</p>
+    <p class="footer-small mono">Hand-coded with HTML, CSS &amp; JavaScript — no page builders. © 2026 Shoaib Ahmed.</p>
   </div>
 </footer>
 

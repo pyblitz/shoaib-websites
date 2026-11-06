@@ -1,10 +1,11 @@
 /* ============================================================
-   Shoaib Ahmed — Creator
+   Shoaib Ahmed — Creator · v3 "Obsidian Index"
    Hand-written JS: curtain intro, hero choreography timing,
    masked line reveals, counters (easeOutExpo), one rAF loop
-   for scroll progress / parallax / marquee velocity, magnetic
-   buttons, card tilt + spotlight, cursor glow. Vanilla only —
-   the site fully works if any of this fails to load.
+   for scroll progress / header / marquee velocity, magnetic
+   primary CTAs, spotlight + gentle tilt on channel cards,
+   cursor follower dot (native cursor always kept).
+   Vanilla only — the site fully works if any of this fails.
    ============================================================ */
 (function () {
   'use strict';
@@ -13,7 +14,7 @@
   var finePointer = window.matchMedia('(pointer: fine)').matches;
   var heroCountersStarted = false;
 
-  /* ---------- Masked line reveals (B3) ----------
+  /* ---------- Masked line reveals ----------
      Split [data-lines] headings on <br> into masked lines.
      No-JS / no-split state simply shows the plain heading. */
   document.querySelectorAll('[data-lines]').forEach(function (el) {
@@ -24,7 +25,7 @@
     el.classList.add('reveal-lines');
   });
 
-  /* ---------- Counters (B9): easeOutExpo, 1500ms, once ---------- */
+  /* ---------- Counters: easeOutExpo, 1500ms, once ---------- */
   function format(value, decimals) {
     return decimals > 0
       ? value.toFixed(decimals)
@@ -54,7 +55,7 @@
     document.querySelectorAll('.stats .counter').forEach(runCounter);
   }
 
-  /* ---------- Curtain intro (B1): ≤1.2s, first visit only ---------- */
+  /* ---------- Curtain intro: ≤1.2s, first visit only ---------- */
   var curtain = document.getElementById('curtain');
   var seen = false;
   try { seen = !!sessionStorage.getItem('sa-creator-intro'); } catch (e) { /* private mode */ }
@@ -102,69 +103,45 @@
   toggle.addEventListener('click', function () {
     var open = nav.classList.toggle('open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
   nav.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') {
+    if (e.target.closest('a')) {
       nav.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
     }
   });
 
-  /* ---------- Reveal observer (B10): sections, headings, cards ---------- */
+  /* ---------- Reveal observer ---------- */
   var revealObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('in');
-      if (!entry.target.closest('.hero')) {
-        entry.target.querySelectorAll('.counter').forEach(runCounter);
-      }
       revealObserver.unobserve(entry.target);
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal, [data-lines]').forEach(function (el) {
     revealObserver.observe(el);
   });
-  document.querySelectorAll('.counter').forEach(function (el) {
-    if (!el.closest('.reveal') && !el.closest('.stats')) revealObserver.observe(el);
-  });
 
-  /* ---------- Aurora pause offscreen (B4) ---------- */
-  var hero = document.getElementById('hero');
-  if (hero && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      hero.classList.toggle('paused', !entries[0].isIntersecting);
-    }).observe(hero);
-  }
-
-  /* ---------- One rAF loop: progress (B8), parallax (B11), marquee velocity (B5) ---------- */
+  /* ---------- One rAF loop: progress, header state, marquee velocity ---------- */
   var progress = document.getElementById('scrollProgress');
-  var heroPhoto = document.getElementById('heroPhoto');
   var mqTrack = document.getElementById('mqTrack');
   var lastScrollY = window.scrollY, mqBoost = 0, ticking = false;
 
   function rafLoop() {
     ticking = false;
     var y = window.scrollY;
-    /* scroll progress */
     var max = document.documentElement.scrollHeight - window.innerHeight;
     if (progress && max > 0) progress.style.transform = 'scaleX(' + Math.min(y / max, 1) + ')';
     header.classList.toggle('scrolled', y > 8);
-    /* light parallax on the hero portrait (desktop, motion-safe) */
-    if (heroPhoto && !reduceMotion && window.innerWidth >= 768) {
-      var rect = hero.getBoundingClientRect();
-      if (rect.bottom > 0 && rect.top < window.innerHeight) {
-        var off = (rect.top + rect.height / 2 - window.innerHeight / 2) * -0.055;
-        off = Math.max(-16, Math.min(16, off));
-        heroPhoto.style.transform = 'translateY(' + off.toFixed(1) + 'px)';
-      }
-    }
     /* marquee velocity nudge: scroll speed briefly quickens the strip */
     var velocity = Math.abs(y - lastScrollY);
     lastScrollY = y;
     mqBoost = Math.min(mqBoost + velocity * 0.004, 1.6);
-    if (mqTrack) {
-      var anims = mqTrack.getAnimations ? mqTrack.getAnimations() : [];
+    if (mqTrack && mqTrack.getAnimations) {
+      var anims = mqTrack.getAnimations();
       if (anims.length) anims[0].playbackRate = 1 + mqBoost;
     }
     mqBoost *= 0.92;
@@ -174,7 +151,7 @@
   }, { passive: true });
   rafLoop();
 
-  /* ---------- Magnetic buttons (B6) — fine pointers only ---------- */
+  /* ---------- Magnetic buttons — fine pointers only, primary CTAs ---------- */
   if (finePointer && !reduceMotion) {
     document.querySelectorAll('[data-magnetic]').forEach(function (el) {
       var raf = null;
@@ -198,9 +175,9 @@
     });
   }
 
-  /* ---------- Card tilt + spotlight (B7) — fine pointers only ---------- */
-  if (finePointer && !reduceMotion && window.innerWidth >= 768) {
-    document.querySelectorAll('.video-card, .channel-card').forEach(function (card) {
+  /* ---------- Spotlight on rows/cards; gentle tilt on channel cards only ---------- */
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.video-row, .channel-card').forEach(function (card) {
       var raf = null;
       card.addEventListener('pointermove', function (e) {
         if (raf) return;
@@ -211,37 +188,42 @@
           var py = (e.clientY - r.top) / r.height;
           card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
           card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-          card.style.transition = 'transform .16s cubic-bezier(.22,1,.36,1)';
-          card.style.transform =
-            'perspective(900px) rotateX(' + ((0.5 - py) * 6).toFixed(2) + 'deg)' +
-            ' rotateY(' + ((px - 0.5) * 6).toFixed(2) + 'deg) translateY(-4px)';
+          if (card.classList.contains('channel-card') && window.innerWidth >= 768) {
+            card.style.transition = 'transform .16s cubic-bezier(.22,1,.36,1)';
+            card.style.transform =
+              'perspective(900px) rotateX(' + ((0.5 - py) * 4).toFixed(2) + 'deg)' +
+              ' rotateY(' + ((px - 0.5) * 4).toFixed(2) + 'deg) translateY(-3px)';
+          }
         });
       });
       card.addEventListener('pointerleave', function () {
-        card.style.transition = 'transform .45s cubic-bezier(.22,1,.36,1)';
-        card.style.transform = '';
+        if (card.classList.contains('channel-card')) {
+          card.style.transition = 'transform .45s cubic-bezier(.22,1,.36,1)';
+          card.style.transform = '';
+        }
       });
     });
   }
 
-  /* ---------- Cursor glow (B12) — desktop, fine pointer, dark-stage garnish ---------- */
-  var glow = document.getElementById('cursorGlow');
-  if (glow && finePointer && !reduceMotion && window.innerWidth >= 1024) {
-    var gx = -400, gy = -400, tx = gx, ty = gy, glowRaf = null;
+  /* ---------- Cursor follower dot — native cursor kept, dot only adds ---------- */
+  var dot = document.getElementById('cursorDot');
+  if (dot && finePointer && !reduceMotion && window.innerWidth >= 1024) {
+    var dx2 = -100, dy2 = -100, tx = dx2, ty = dy2, dotRaf = null;
     document.addEventListener('pointermove', function (e) {
       tx = e.clientX; ty = e.clientY;
-      glow.classList.add('on');
-      if (!glowRaf) glowRaf = requestAnimationFrame(glowStep);
+      dot.classList.add('on');
+      dot.classList.toggle('grow', !!e.target.closest('a, button'));
+      if (!dotRaf) dotRaf = requestAnimationFrame(dotStep);
     }, { passive: true });
-    function glowStep() {
-      gx += (tx - gx) * 0.15;
-      gy += (ty - gy) * 0.15;
-      glow.style.transform = 'translate(' + (gx - 180) + 'px,' + (gy - 180) + 'px)';
-      if (Math.abs(tx - gx) > 0.4 || Math.abs(ty - gy) > 0.4) {
-        glowRaf = requestAnimationFrame(glowStep);
-      } else { glowRaf = null; }
+    function dotStep() {
+      dx2 += (tx - dx2) * 0.22;
+      dy2 += (ty - dy2) * 0.22;
+      dot.style.transform = 'translate(' + dx2 + 'px,' + dy2 + 'px) translate(-50%,-50%)';
+      if (Math.abs(tx - dx2) > 0.4 || Math.abs(ty - dy2) > 0.4) {
+        dotRaf = requestAnimationFrame(dotStep);
+      } else { dotRaf = null; }
     }
-  } else if (glow) {
-    glow.style.display = 'none';
+  } else if (dot) {
+    dot.style.display = 'none';
   }
 })();
