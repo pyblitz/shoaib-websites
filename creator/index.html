@@ -18,6 +18,23 @@
 </head>
 <body>
 
+<!-- Scroll progress (B8) -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- Page-load curtain intro (B1) — JS lifts it; CSS failsafe hides it -->
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="curtain-inner">
+    <span class="curtain-mark">SA</span>
+    <span class="curtain-count" id="curtainCount">0</span>
+    <span class="curtain-bar"><span id="curtainBarFill"></span></span>
+    <span class="curtain-name">SHOAIB AHMED</span>
+  </div>
+</div>
+<noscript><style>.curtain{display:none}</style></noscript>
+
+<!-- Cursor glow (B12, desktop only) -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
 <!-- ================= HEADER ================= -->
 <header class="site-header" id="siteHeader">
   <a class="brand" href="#top" aria-label="Shoaib Ahmed — home">
@@ -32,23 +49,27 @@
     <a href="#channels">Channels</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a class="nav-cta" href="#connect">Work With Me</a>
+    <a class="nav-cta" href="#connect" data-magnetic>Work With Me</a>
   </nav>
 </header>
 
 <main id="top">
 
-  <!-- ================= HERO ================= -->
-  <section class="hero">
+  <!-- ================= HERO (dark stage, B2/B4/B11) ================= -->
+  <section class="hero" id="hero">
+    <span class="aurora a-blue" aria-hidden="true"></span>
+    <span class="aurora a-gold" aria-hidden="true"></span>
+    <span class="hero-grain" aria-hidden="true"></span>
+    <span class="hero-ghost" aria-hidden="true">CREATOR</span>
     <div class="hero-inner">
       <div class="hero-copy">
         <p class="kicker reveal">Video Creator · Graphic Designer · Python Developer</p>
-        <h1 class="reveal">Shoaib Ahmed<span class="dot">.</span></h1>
+        <h1 data-lines>Shoaib Ahmed<span class="dot">.</span></h1>
         <p class="hero-sub reveal">I create anime edits people watch to the end, Python tricks
           beginners actually understand, and designs that get clicks, customers and sales —
           from Sukkur, Pakistan, to screens everywhere.</p>
         <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="#videos">▶ Watch Top Videos</a>
+          <a class="btn btn-primary" href="#videos" data-magnetic>▶ Watch Top Videos</a>
           <a class="btn btn-ghost" href="#channels">Subscribe</a>
         </div>
         <div class="stats reveal" role="list" aria-label="Channel statistics">
@@ -70,20 +91,34 @@
           </div>
         </div>
       </div>
-      <div class="hero-photo reveal">
-        <div class="photo-frame">
-          <img src="assets/portrait.jpg" alt="Portrait of Shoaib Ahmed" width="740" height="925">
-          <span class="photo-badge">🎬 2 channels · 1 creator</span>
+      <div class="hero-photo" id="heroPhoto">
+        <div class="photo-reveal reveal">
+          <div class="photo-frame">
+            <img src="assets/portrait-hero.jpg" alt="Portrait of Shoaib Ahmed" width="740" height="925">
+            <span class="photo-badge">🎬 2 channels · 1 creator</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ================= MARQUEE (B5) ================= -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="mqTrack">
+      <div class="mq-group">
+        <span>Anime Edits</span><i>✦</i><span>Python Tricks</span><i>✦</i><span>Thumbnails</span><i>✦</i><span>Video Editing</span><i>✦</i><span>Web Design</span><i>✦</i><span>Logo Design</span><i>✦</i><span>Shorts &amp; Reels</span><i>✦</i><span>Brand Posts</span><i>✦</i>
+      </div>
+      <div class="mq-group">
+        <span>Anime Edits</span><i>✦</i><span>Python Tricks</span><i>✦</i><span>Thumbnails</span><i>✦</i><span>Video Editing</span><i>✦</i><span>Web Design</span><i>✦</i><span>Logo Design</span><i>✦</i><span>Shorts &amp; Reels</span><i>✦</i><span>Brand Posts</span><i>✦</i>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= TOP VIDEOS ================= -->
   <section class="section" id="videos">
     <div class="section-head reveal">
       <p class="kicker">Proof, not promises</p>
-      <h2>Top Videos</h2>
+      <h2 data-lines>Top Videos</h2>
       <p>Real videos, real numbers — click any card to watch on YouTube.</p>
     </div>
     <div class="video-grid">
@@ -138,7 +173,7 @@
   <section class="section section-alt" id="channels">
     <div class="section-head reveal">
       <p class="kicker">Two channels, two worlds</p>
-      <h2>My Channels</h2>
+      <h2 data-lines>My Channels</h2>
     </div>
     <div class="channel-grid">
       <article class="channel-card reveal">
@@ -163,9 +198,9 @@
   <!-- ================= ABOUT ================= -->
   <section class="section" id="about">
     <div class="about-grid">
-      <div class="about-copy reveal">
+      <div class="about-copy reveal reveal-l">
         <p class="kicker">About the creator</p>
-        <h2>Programmer by study,<br>creator by obsession.</h2>
+        <h2 data-lines>Programmer by study,<br>creator by obsession.</h2>
         <p>I'm a final-year BSCS student at Sindh Agriculture University, Tandojam, based in
           Sukkur, Sindh. By day I write Python and design; by night I cut the edits my
           audience argues about in the comments.</p>
@@ -179,7 +214,7 @@
           <li>🛠️ Photoshop · Canva · CapCut · Python</li>
         </ul>
       </div>
-      <div class="about-photo reveal">
+      <div class="about-photo reveal reveal-r">
         <img src="assets/portrait.jpg" alt="Shoaib Ahmed" loading="lazy" width="740" height="925">
       </div>
     </div>
@@ -189,7 +224,7 @@
   <section class="section section-dark" id="services">
     <div class="section-head reveal">
       <p class="kicker gold">Work with me</p>
-      <h2>Creator Services</h2>
+      <h2 data-lines>Creator Services</h2>
       <p>The same craft behind 227.9K views — available for your channel or business.</p>
     </div>
     <div class="service-grid">
@@ -213,7 +248,7 @@
       </article>
     </div>
     <p class="services-cta reveal">
-      <a class="btn btn-gold" href="#connect">DM to Order →</a>
+      <a class="btn btn-gold" href="#connect" data-magnetic>DM to Order →</a>
     </p>
   </section>
 
@@ -221,7 +256,7 @@
   <section class="section" id="connect">
     <div class="section-head reveal">
       <p class="kicker">Say hello</p>
-      <h2>Connect With Me</h2>
+      <h2 data-lines>Connect With Me</h2>
     </div>
     <div class="social-grid">
       <a class="social-card reveal" href="https://www.linkedin.com/in/shoaibahmed-designer/" target="_blank" rel="noopener"><strong>in</strong><span>LinkedIn</span><em>Professional profile</em></a>
